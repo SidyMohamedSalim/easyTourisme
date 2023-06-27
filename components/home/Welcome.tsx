@@ -1,6 +1,6 @@
 import Image from "next/image";
 import React from "react";
-import { MapPin, Navigation, Search, User2 } from "lucide-react";
+import { MapPin, Navigation, Search, User2, Users2 } from "lucide-react";
 
 const Welcome = () => {
   return (
@@ -56,11 +56,11 @@ const Welcome = () => {
           </div>
         </div>
         {/* search */}
-        <div className="grid grid-cols-7 shadow-2xl w-fit rounded-full px-10 py-4 gap-6  my-6 text-sm">
-          <div className="col-span-2 flex items-center gap-2 ">
+        <div className="grid grid-cols-7 shadow-2xl w-fit rounded-full px-10 py-4 gap-6  my-10 text-sm justify-center">
+          <div className="col-span-2 flex items-center gap-2 border-r border-slate-400 px-1 mx-1">
             <MapPin className="text-orange-500" />
             <div>
-              <h1 className="font-bold pb-2 ">Location</h1>
+              <h1 className="font-bold pb-1 ">Location</h1>
               <div className="border-b b mr-3 text-xs focus:border-none">
                 <input
                   type="search"
@@ -70,10 +70,10 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <div className="col-span-2 flex items-center gap-2">
+          <div className="col-span-2 flex items-center gap-2  border-r border-slate-400 px-1 mx-1">
             <Navigation className="text-orange-500" />
             <div>
-              <h1 className="font-bold pb-2">Distance</h1>
+              <h1 className="font-bold pb-1">Distance</h1>
               <div className="border-b  mr-3 text-xs focus:border-none">
                 <input
                   type="search"
@@ -83,10 +83,10 @@ const Welcome = () => {
               </div>
             </div>
           </div>
-          <div className=" col-span-2 flex items-center gap-2">
-            <User2 className="text-orange-500" />
+          <div className=" col-span-2 flex items-center gap-2 ">
+            <Users2 className="text-orange-500" />
             <div>
-              <h1 className="font-bold pb-2">Max People</h1>
+              <h1 className="font-bold pb-1">Max People</h1>
               <div className="border-b  mr-3 text-xs focus:border-none">
                 <input
                   type="search"
