@@ -1,14 +1,4 @@
-import {
-  Locate,
-  LocateFixed,
-  LucideLocate,
-  Map,
-  MapPin,
-  Star,
-  Stars,
-  Users2,
-  Wallet,
-} from "lucide-react";
+import { LocateFixed, MapPin, Star, User, Users2, Wallet } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 
@@ -23,7 +13,7 @@ const page = () => {
               height={500}
               src="/images/gallery-01.jpg"
               alt=""
-              className="w-full h-[50%] rounded-md"
+              className="w-full h-[40%] max-md:h-96 rounded-md"
             />
 
             {/* details */}
@@ -73,8 +63,6 @@ const page = () => {
             <div className="my-6">
               <div className="rounded-sm p-6 border">
                 <h1>Reviews (0 reviews)</h1>
-                {/* deferrents reviews */}
-                <div>{/* todo */}</div>
 
                 <div className="text-xs grid grid-cols-5 gap-2 text-orange-200  w-fit py-4">
                   <h1 className="flex justify-center items-center">
@@ -117,11 +105,109 @@ const page = () => {
                     />
                   </form>
                 </div>
+                {/* deferrents reviews */}
+                <div className="md:overflow-scroll md:max-h-64 mt-6 max-md:mb-[2rem]">
+                  {/* avis */}
+                  <div className="py-3">
+                    <div className="flex justify-between pt-6 px-3 items-center">
+                      <div className="flex ">
+                        <User
+                          className="mr-6 font-bold justify-start items-start"
+                          size={30}
+                        />
+                        <div>
+                          <h1 className="font-extrabold">username</h1>
+                          <h3 className="text-sm font-extralight italic">
+                            January 14,2023
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h1 className="flex justify-center items-center">
+                          <span>1</span>
+                          <Star size={15} fill="orange" color="orange" />
+                        </h1>
+                      </div>
+                    </div>
+                    <p className="px-12 font-light text-sm">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Tenetur rem nesciunt dolor sint? Porro ratione laudantium
+                      veniam cum quasi accusamus, vitae eligendi maiores enim
+                      suscipit consequatur similique reprehenderit quis sequi?
+                    </p>
+                  </div>
+                  {/* fin avis */}
+
+                  {/* avis */}
+                  <div className="py-3">
+                    <div className="flex justify-between pt-6 px-3 items-center">
+                      <div className="flex ">
+                        <User
+                          className="mr-6 font-bold justify-start items-start"
+                          size={30}
+                        />
+                        <div>
+                          <h1 className="font-extrabold">username</h1>
+                          <h3 className="text-sm font-extralight italic">
+                            January 14,2023
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h1 className="flex justify-center items-center">
+                          <span>1</span>
+                          <Star size={15} fill="orange" color="orange" />
+                        </h1>
+                      </div>
+                    </div>
+                    <p className="px-12 font-light text-sm">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Tenetur rem nesciunt dolor sint? Porro ratione laudantium
+                      veniam cum quasi accusamus, vitae eligendi maiores enim
+                      suscipit consequatur similique reprehenderit quis sequi?
+                    </p>
+                  </div>
+                  {/* fin avis */}
+
+                  {/* avis */}
+                  <div className="py-3">
+                    <div className="flex justify-between pt-6 px-3 items-center">
+                      <div className="flex ">
+                        <User
+                          className="mr-6 font-bold justify-start items-start"
+                          size={30}
+                        />
+                        <div>
+                          <h1 className="font-extrabold">username</h1>
+                          <h3 className="text-sm font-extralight italic">
+                            January 14,2023
+                          </h3>
+                        </div>
+                      </div>
+
+                      <div>
+                        <h1 className="flex justify-center items-center">
+                          <span>1</span>
+                          <Star size={15} fill="orange" color="orange" />
+                        </h1>
+                      </div>
+                    </div>
+                    <p className="px-12 font-light text-sm">
+                      Lorem ipsum dolor sit amet consectetur, adipisicing elit.
+                      Tenetur rem nesciunt dolor sint? Porro ratione laudantium
+                      veniam cum quasi accusamus, vitae eligendi maiores enim
+                      suscipit consequatur similique reprehenderit quis sequi?
+                    </p>
+                  </div>
+                  {/* fin avis */}
+                </div>
               </div>
             </div>
           </div>
 
-          <div className="lg:col-span-2 border m-4 rounded-md">
+          <div className="lg:col-span-2 border m-4 rounded-md h-fit">
             <div className="flex justify-between m-6 pb-6 border-b">
               <h1 className="text-sm">
                 <span className="text-2xl font-semibold">$99</span> /person
