@@ -1,7 +1,8 @@
 import Features from "@/components/home/Features";
+import News from "@/components/home/News";
 import Services from "@/components/home/Services";
 import Welcome from "@/components/home/Welcome";
-import Image from "next/image";
+import WhyMe from "../components/home/WhyMe";
 
 export default function Home() {
   return (
@@ -9,6 +10,8 @@ export default function Home() {
       <Welcome />
       <Services />
       <Features />
+      <WhyMe />
+      <News />
     </main>
   );
 }

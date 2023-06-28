@@ -4,7 +4,7 @@ import React from "react";
 
 const BlocB = ({ desc, image }: { desc: string; image: string }) => {
   return (
-    <div className="relative mr-3 w-72 my-4 hover:opacity-50">
+    <div className="relative mr-4  my-4 hover:opacity-50 ">
       <div className="absolute top-2 right-2 text-xl flex items-center justify-center bg-white px-2 w-8 h-8 rounded-full ">
         <Heart />
       </div>

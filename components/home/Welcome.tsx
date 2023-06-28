@@ -6,9 +6,9 @@ const Welcome = () => {
   return (
     <div>
       <div className="max-w-5xl mx-auto">
-        <div className=" mx-auto flex justify-between items-center max-xl:px-4 pt-24">
+        <div className=" mx-auto flex max-md:flex-col max-md:px-0 justify-between items-center max-xl:px-4 pt-24">
           {/* left */}
-          <div className="w-[48%] pr-6">
+          <div className="w-[48%] pr-6 max-md:px-6 max-md:w-full max-md:text-center">
             <div className="bg-orange-200 w-fit px-4 py-2 rounded-full font-[cursive]">
               Melleure Opportunite
             </div>
@@ -25,7 +25,7 @@ const Welcome = () => {
           </div>
 
           {/* right */}
-          <div className="w-[55%] flex">
+          <div className="w-[55%] flex max-md:px-4 max-md:w-full max-md:mt-10">
             <div className="mr-4">
               <Image
                 className="w-96  h-60 mr-5 border-2 border-black rounded-3xl"

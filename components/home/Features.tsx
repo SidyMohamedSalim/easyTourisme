@@ -8,15 +8,15 @@ const Features = () => {
         <div className="mx-6">
           {/* title section */}
           <div>
-            <h1 className="font-semibold text-2xl mb-4">
+            <h1 className="font-semibold text-4xl mb-1">
               Les meilleures activités par catégorie
             </h1>
-            <p className="text-md">
+            <p className="text-md py-3">
               Les Laureats Travellers&apos;Choice Best of the Best
             </p>
           </div>
           {/* content */}
-          <div className="flex flex-wrap  gap-4">
+          <div className="grid  sm:grid-cols-2 md:grid-cols-3  gap-4">
             <BlocA title={"Palmarés global"} image={"/images/tour-img02.jpg"} />
             <BlocA title={"Palmarés global"} image={"/images/tour-img03.jpg"} />
             <BlocA title={"Palmarés global"} image={"/images/tour-img01.jpg"} />
