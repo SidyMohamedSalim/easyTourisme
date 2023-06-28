@@ -5,7 +5,7 @@ import { MapPin, Navigation, Search, User2, Users2 } from "lucide-react";
 const Welcome = () => {
   return (
     <div>
-      <div className="max-w-5xl mx-auto">
+      <div className="max-w-5xl mx-auto mb-28">
         <div className=" mx-auto flex max-md:flex-col max-md:px-0 justify-between items-center max-xl:px-4 pt-24">
           {/* left */}
           <div className="w-[48%] pr-6 max-md:px-6 max-md:w-full max-md:text-center">

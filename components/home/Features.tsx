@@ -3,7 +3,7 @@ import BlocA from "../ui/blocs/blocA";
 
 const Features = () => {
   return (
-    <section className="relative my-16">
+    <section className="relative my-28">
       <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
         <div className="mx-6">
           {/* title section */}

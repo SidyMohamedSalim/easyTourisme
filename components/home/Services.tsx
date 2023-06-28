@@ -3,7 +3,7 @@ import React from "react";
 
 const Services = () => {
   return (
-    <div className="bg-slate-100">
+    <div className="bg-slate-100 my-28">
       <div className="max-w-5xl mx-auto grid grid-cols-4 max-md:grid-cols-3 gap-4 px-3 pt-20 pb-10 ">
         <div className="pr-4 max-md:col-span-3 text-center">
           <h2 className="font-second text-xl text-orange-300">
