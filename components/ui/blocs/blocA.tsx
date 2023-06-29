@@ -13,7 +13,7 @@ const BlocA = ({ title, image }: blocAProps) => {
         <Image
           src={image}
           alt=""
-          className="w-72 h-64 rounded-sm max-sm:w-full"
+          className="md:w-72 md:h-64 rounded-sm max-sm:w-full"
           width={600}
           height={600}
         />

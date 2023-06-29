@@ -5,7 +5,7 @@ import { MapPin, Navigation, Search, User2, Users2 } from "lucide-react";
 const Welcome = () => {
   return (
     <div>
-      <div className="max-w-5xl mx-auto mb-28">
+      <div className="max-md:w-full max-w-5xl mx-auto mb-28">
         <div className=" mx-auto flex max-md:flex-col max-md:px-0 justify-between items-center max-xl:px-4 pt-24">
           {/* left */}
           <div className="w-[48%] pr-6 max-md:px-6 max-md:w-full max-md:text-center">
@@ -28,7 +28,7 @@ const Welcome = () => {
           <div className="w-[55%] flex max-md:px-4 max-md:w-full max-md:mt-10">
             <div className="mr-4">
               <Image
-                className="w-96  h-60 mr-5 border-2 border-black rounded-3xl"
+                className="md:w-96  md:h-60 mr-5 border-2 border-black rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
@@ -37,7 +37,7 @@ const Welcome = () => {
             </div>
             <div className="mt-10 mr-4">
               <Image
-                className="w-96 h-60  border-black   border-2 rounded-3xl"
+                className="md:w-96 md:h-60  border-black   border-2 rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
@@ -46,7 +46,7 @@ const Welcome = () => {
             </div>
             <div className="mt-20">
               <Image
-                className="w-96   h-60 border-2 border-black s rounded-3xl"
+                className="md:w-96   md:h-60 border-2 border-black s rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
