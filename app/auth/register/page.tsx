@@ -19,21 +19,21 @@ const page = () => {
                 <input
                   type="email"
                   placeholder="Your Email"
-                  className="w-96 py-2 px-3 m-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+                  className="w-full md:w-96 py-2 px-3 my-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
                 />
               </div>
               <div>
                 <input
                   type="password"
                   placeholder="password"
-                  className="w-96 py-2 px-3 m-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+                  className="w-full md:w-96 py-2 mr-2 px-3 my-4  rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
                 />
               </div>
               <div>
                 <input
                   type="password"
                   placeholder="Confirm password"
-                  className="w-96 py-2 px-3 m-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+                  className="w-full md:w-96 pr-5 py-2 px-3  my-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
                 />
               </div>
               {/* Avec les reseaux sociaux */}
