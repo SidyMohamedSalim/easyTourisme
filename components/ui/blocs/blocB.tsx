@@ -14,7 +14,7 @@ const BlocB = ({ desc, image }: { desc: string; image: string }) => {
         <Image
           src={image}
           alt=""
-          className="w-72 h-72"
+          className="w-full h-72"
           width={600}
           height={600}
         />
