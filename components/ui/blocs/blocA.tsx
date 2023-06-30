@@ -1,5 +1,6 @@
 import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 type blocAProps = {
@@ -36,9 +37,12 @@ const BlocA = ({ title, image }: blocAProps) => {
             <span className="text-orange-400 text-base font-bold">$99 </span>
             /person
           </h4>
-          <button className="bg-orange-400 px-2 py-1 text-sm text-white rounded-md">
+          <Link
+            href={"/tours/tour"}
+            className="bg-orange-400 px-2 py-1 text-sm text-white rounded-md"
+          >
             Book Now
-          </button>
+          </Link>
         </div>
       </div>
     </div>

@@ -1,10 +1,11 @@
 import { Heart } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
 import React from "react";
 
 const BlocC = ({ desc, image }: { desc: string; image: string }) => {
   return (
-    <div className="relative mx-3 w-96 my-4 bg-white">
+    <Link href={"/tours/tour"} className="relative mx-3 w-96 my-4 bg-white">
       <div className="absolute top-2 right-2 text-xl flex items-center justify-center bg-white px-2 w-8 h-8 rounded-full ">
         <Heart />
       </div>
@@ -25,7 +26,7 @@ const BlocC = ({ desc, image }: { desc: string; image: string }) => {
           Idriss
         </h1>
       </div>
-    </div>
+    </Link>
   );
 };
 
