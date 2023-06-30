@@ -74,14 +74,15 @@ const Header = () => {
                   Home
                 </Link>
               </div>
+
+              <div className="py-2 my-1 hover:bg-white">
+                <Link href={"/tours"} className="px-4  w-full">
+                  Découvrir
+                </Link>
+              </div>
               <div className="py-2 my-1 hover:bg-white w-full">
                 <Link href={"/about"} className="px-4 w-full">
                   About
-                </Link>
-              </div>
-              <div className="py-2 my-1 hover:bg-white">
-                <Link href={"/tours"} className="px-4  w-full">
-                  Tour
                 </Link>
               </div>
             </nav>
@@ -107,13 +108,13 @@ const Header = () => {
         <div className="flex justify-evenly gap-12 max-md:hidden">
           <nav className="mr-14 text-md font-light">
             <Link href={"/"} className="px-4 text-orange-500">
-              Home
+              Accueil
+            </Link>
+            <Link href={"/tours"} className="px-4">
+              Découvrir
             </Link>
             <Link href={"/about"} className="px-4">
               About
-            </Link>
-            <Link href={"/tours"} className="px-4">
-              Tour
             </Link>
           </nav>
           <div className="">

@@ -1,7 +1,9 @@
 import React from "react";
 import BlocA from "../ui/blocs/blocA";
+import { Besttours } from "../../src/db/tours";
 
-const Features = () => {
+const Features = async () => {
+  const tours = await Besttours();
   return (
     <section className="relative my-28">
       <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
@@ -17,12 +19,9 @@ const Features = () => {
           </div>
           {/* content */}
           <div className="grid  sm:grid-cols-2 md:grid-cols-3  gap-4">
-            <BlocA title={"Palmarés global"} image={"/images/tour-img02.jpg"} />
-            <BlocA title={"Palmarés global"} image={"/images/tour-img03.jpg"} />
-            <BlocA title={"Palmarés global"} image={"/images/tour-img01.jpg"} />
-            <BlocA title={"Palmarés global"} image={"/images/tour-img05.jpg"} />
-            <BlocA title={"Palmarés global"} image={"/images/tour-img04.jpg"} />
-            <BlocA title={"Palmarés global"} image={"/images/tour-img07.jpg"} />
+            {tours.map((tour) => (
+              <BlocA key={tour.id} {...tour} />
+            ))}
           </div>
         </div>
       </div>

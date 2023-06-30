@@ -1,11 +1,12 @@
+import { Tour } from "@prisma/client";
 import { Heart, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 
-const BlocB = ({ desc, image }: { desc: string; image: string }) => {
+const BlocB = ({ title, image, price, rating, id }: Tour) => {
   return (
-    <Link href={"/tours/tour"} className="relative my-4 hover:opacity-50 ">
+    <Link href={`/tours/${id}/`} className="relative my-4 hover:opacity-50 ">
       <div className="absolute top-2 right-2 text-xl flex items-center justify-center bg-white px-2 w-8 h-8 rounded-full ">
         <Heart />
       </div>
@@ -21,9 +22,8 @@ const BlocB = ({ desc, image }: { desc: string; image: string }) => {
         />
       </div>
       <div>
-        <h1 className="font-semibold hover:decoration-black hover:underline leading-5 ">
-          Visite historique d&apos;une journée à Meknès Volubilis et Moulay
-          Idriss
+        <h1 className="font-semibold hover:decoration-black hover:underline leading-5 line-clamp-2">
+          {title}
         </h1>
         {/* Notes */}
         <div className="flex">
@@ -36,11 +36,11 @@ const BlocB = ({ desc, image }: { desc: string; image: string }) => {
             <p>⭐</p>
           </div>
           {/* Nombre de personnes qui ont noter */}
-          <p className="mx-2 font-light">109</p>
+          <p className="mx-2 font-light">{rating}</p>
         </div>
         {/* Prix */}
         <div>
-          <p className="font-medium">á partir de 321 MAD par adulte</p>
+          <p className="font-medium">á partir de {price} MAD par adulte</p>
         </div>
       </div>
     </Link>

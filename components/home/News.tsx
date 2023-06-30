@@ -1,8 +1,10 @@
 import React from "react";
 import BlocB from "../ui/blocs/blocB";
 import BlocC from "../ui/blocs/blocC";
+import { lastTours } from "../../src/db/tours";
 
-const News = () => {
+const News = async () => {
+  const tours = await lastTours();
   return (
     <section className="relative my-28 mx-3">
       <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
@@ -18,18 +20,9 @@ const News = () => {
           </div>
           {/* content */}
           <div className="grid  max-md:grid-cols-2 grid-cols-3  gap-4">
-            <BlocB
-              desc={"Palmarés global"}
-              image={"/tour-images/tour-img08.jpg"}
-            />
-            <BlocB
-              desc={"Palmarés global"}
-              image={"/tour-images/tour-img09.jpg"}
-            />
-            <BlocB desc={"Palmarés global"} image={"/images/gallery-03.jpg"} />
-            <BlocB desc={"Palmarés global"} image={"/images/gallery-04.jpg"} />
-            <BlocB desc={"Palmarés global"} image={"/images/gallery-02.jpg"} />
-            <BlocB desc={"Palmarés global"} image={"/images/gallery-01.jpg"} />
+            {tours.map((tour) => (
+              <BlocB key={tour.id} {...tour} />
+            ))}
           </div>
         </div>
       </div>
