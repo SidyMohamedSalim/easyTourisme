@@ -1,17 +1,18 @@
 "use client";
 import Menu from "@/components/ui/Menu";
-import { MenuIcon, X } from "lucide-react";
+import { MenuIcon, Search, X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const [isSearch, setIsSearch] = useState(false);
   return (
     <header>
       <div className="max-w-5xl mx-auto max-md:flex-col flex items-center justify-between py-3 ">
         <div className="flex justify-between max-md:w-full max-md:items-center max-md:px-3">
-          <div className=" ">
+          <Link href={"/"} className=" ">
             <Image
               width={300}
               height={200}
@@ -19,8 +20,21 @@ const Header = () => {
               src={"/images/logo.png"}
               alt=""
             />
-          </div>
-          <div className="block md:hidden">
+          </Link>
+          <div className=" md:hidden flex items-center gap-2">
+            {isSearch && (
+              <form action="">
+                <input
+                  type="text"
+                  placeholder="Quelle Destination ?"
+                  className="border px-2 rounded-sm bg-slate-200 text-sm py-1 focus:outline-none"
+                />
+              </form>
+            )}
+            <button className="" onClick={() => setIsSearch(!isSearch)}>
+              <Search />
+            </button>
+
             <button
               className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 "
               onClick={() => {

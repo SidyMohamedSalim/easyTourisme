@@ -6,7 +6,7 @@ const WhyMe = () => {
   return (
     <section className="relative my-28 py-5 bg-slate-100">
       <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
-        <div className="mx-6">
+        <div className="mx-3">
           {/* title section */}
           <div>
             <h1 className="font-semibold text-4xl mb-1">Why Choose Us</h1>
