@@ -4,7 +4,7 @@ import BlocC from "../ui/blocs/blocC";
 
 const News = () => {
   return (
-    <section className="relative my-28">
+    <section className="relative my-28 mx-3">
       <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
         <div className="">
           {/* desc section */}

@@ -28,7 +28,7 @@ const Welcome = () => {
           <div className="w-[55%] flex max-md:px-4 max-md:w-full max-md:mt-10">
             <div className="mr-4">
               <Image
-                className="md:w-96  md:h-60 mr-5 border-2 border-black rounded-3xl"
+                className="w-96  h-60 mr-5 border-2 border-black rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
@@ -37,7 +37,7 @@ const Welcome = () => {
             </div>
             <div className="mt-10 mr-4">
               <Image
-                className="md:w-96 md:h-60  border-black   border-2 rounded-3xl"
+                className="w-96 h-60  border-black   border-2 rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
@@ -46,7 +46,7 @@ const Welcome = () => {
             </div>
             <div className="mt-20">
               <Image
-                className="md:w-96   md:h-60 border-2 border-black s rounded-3xl"
+                className="w-96 h-60 border-2 border-black s rounded-3xl"
                 width={300}
                 height={700}
                 alt=""
@@ -56,7 +56,7 @@ const Welcome = () => {
           </div>
         </div>
         {/* search */}
-        <div className="grid grid-cols-7 shadow-2xl w-fit rounded-full px-10 py-4 gap-6  my-10 text-sm justify-center">
+        <div className="grid grid-cols-7 shadow-2xl w-fit rounded-full max-md:hidden px-10 py-4 gap-6  my-10 text-sm justify-center">
           <div className="col-span-2 flex items-center gap-2 border-r border-slate-400 px-1 mx-1">
             <MapPin className="text-orange-500" />
             <div>
