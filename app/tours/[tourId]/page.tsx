@@ -190,9 +190,10 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                     className="border-b text-sm w-full focus:outline-none hover:outline-none my-3"
                   />
                   <input
-                    type="text"
+                    type="number"
                     name="guest"
-                    placeholder="Guest"
+                    min="1"
+                    placeholder="Nbre de Personnes"
                     id=""
                     className="border-b w-full focus:outline-none hover:outline-none my-3 text-sm"
                   />
@@ -214,7 +215,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 </div>
 
                 <button className="w-full bg-orange-400  py-1 text-sm rounded-3xl mt-4 text-white hover:bg-orange-500">
-                  Book Now
+                  Reserver Maintenant
                 </button>
               </div>
             </div>

@@ -114,7 +114,7 @@ const Header = () => {
               Découvrir
             </Link>
             <Link href={"/about"} className="px-4">
-              About
+              A propos
             </Link>
           </nav>
           <div className="">

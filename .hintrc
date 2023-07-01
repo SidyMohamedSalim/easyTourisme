@@ -3,6 +3,18 @@
     "development"
   ],
   "hints": {
-    "axe/name-role-value": "off"
+    "axe/name-role-value": "off",
+    "axe/aria": [
+      "default",
+      {
+        "aria-required-parent": "off"
+      }
+    ],
+    "axe/forms": [
+      "default",
+      {
+        "label": "off"
+      }
+    ]
   }
 }

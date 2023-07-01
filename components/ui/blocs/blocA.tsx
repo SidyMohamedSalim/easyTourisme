@@ -11,7 +11,7 @@ const BlocA = ({ title, image, city, rating, price, id }: Tour) => {
         <Image
           src={image}
           alt=""
-          className="md:w-72 md:h-64 rounded-sm max-sm:w-full"
+          className=" md:h-64 rounded-sm w-full"
           width={600}
           height={600}
         />
@@ -40,9 +40,9 @@ const BlocA = ({ title, image, city, rating, price, id }: Tour) => {
           </h4>
           <Link
             href={`/tours/${id}`}
-            className="bg-orange-400 px-2 py-1 text-sm text-white rounded-md"
+            className="bg-orange-400 hover:bg-orange-600 px-2 py-1 text-sm text-white rounded-md"
           >
-            Book Now
+            Voir plus
           </Link>
         </div>
       </div>
