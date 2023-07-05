@@ -1,3 +1,4 @@
+"use client";
 import React from "react";
 import Link from "next/link";
 import Image from "next/image";
@@ -7,12 +8,12 @@ const page = () => {
   return (
     <div>
       <div className="max-w-5xl mx-auto flex justify-center">
-        <div className="flex flex-col justify-between items-center shadow-2xl mt-16 rounded-2xl relative bg-slate-50 md:p-6 md:w-[46rem]">
+        <div className="flex flex-col justify-between items-center shadow-2xl mt-16 rounded-2xl relative bg-slate-50 md:p-6 md:w-[46rem] px-3">
           <div className="absolute -top-6">
             <Image src={"/images/user.png"} alt="" width={50} height={50} />
           </div>
           <h1 className="text-2xl py-3">Registrer</h1>
-          <div className="mx-auto grid grid-cols-2 max-md:px-4">
+          <div className="mx-auto grid md:grid-cols-2 max-md:px-4">
             <button
               type="button"
               className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"

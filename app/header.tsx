@@ -1,13 +1,16 @@
 "use client";
-import Menu from "@/components/ui/Menu";
-import { MenuIcon, Search, X } from "lucide-react";
+import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
+import { useSession } from "next-auth/react";
+import SignOutButton from "@/components/auth/SignOutButton";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const [isSearch, setIsSearch] = useState(false);
+  const { data } = useSession();
+  console.log(data);
+
   return (
     <header>
       <div className="max-w-5xl mx-auto max-md:flex-col flex items-center justify-between py-3 ">
@@ -22,19 +25,6 @@ const Header = () => {
             />
           </Link>
           <div className=" md:hidden flex items-center gap-2">
-            {isSearch && (
-              <form action="">
-                <input
-                  type="text"
-                  placeholder="Quelle Destination ?"
-                  className="border px-2 rounded-sm bg-slate-200 text-sm py-1 focus:outline-none"
-                />
-              </form>
-            )}
-            <button className="" onClick={() => setIsSearch(!isSearch)}>
-              <Search />
-            </button>
-
             <button
               className="flex items-center px-3 py-2 border rounded text-gray-500 border-gray-600 "
               onClick={() => {
@@ -86,21 +76,36 @@ const Header = () => {
                 </Link>
               </div>
             </nav>
-            <div className="">
-              <div className="py-2 my-1 hover:bg-white">
-                <Link className="font-semibold p-4" href={"/auth/login"}>
-                  Login
-                </Link>
+            {data ? (
+              <div className="">
+                <div className="py-2 my-1 text-center flex ">
+                  <Image
+                    src={data.user?.image ?? ""}
+                    height={40}
+                    width={40}
+                    alt={data.user?.name ?? ""}
+                    className="rounded-full border-1 border-black shadow"
+                  />{" "}
+                  <SignOutButton />
+                </div>
               </div>
-              <div className="py-2 my-1">
-                <Link
-                  className="bg-orange-400 rounded-2xl px-4 py-2"
-                  href={"/auth/register"}
-                >
-                  Register
-                </Link>
+            ) : (
+              <div className="">
+                <div className="py-2 my-1 hover:bg-white">
+                  <Link className="font-semibold p-4" href={"/auth/login"}>
+                    Login
+                  </Link>
+                </div>
+                <div className="py-2 my-1">
+                  <Link
+                    className="bg-orange-400 rounded-2xl px-4 py-2"
+                    href={"/auth/register"}
+                  >
+                    Register
+                  </Link>
+                </div>
               </div>
-            </div>
+            )}
           </div>
         )}
         {/*  */}
@@ -118,15 +123,31 @@ const Header = () => {
             </Link>
           </nav>
           <div className="">
-            <Link className="font-semibold p-4" href={"/auth/login"}>
-              Login
-            </Link>
-            <Link
-              className="bg-orange-400 rounded-2xl px-4 py-2"
-              href={"/auth/register"}
-            >
-              Register
-            </Link>
+            {data ? (
+              <div className="my-1 text-center flex justify-center items-center ">
+                <Image
+                  src={data.user?.image ?? ""}
+                  height={40}
+                  width={40}
+                  alt={data.user?.name ?? ""}
+                  className="rounded-full border-1 border-black shadow mx-4"
+                />
+
+                <SignOutButton />
+              </div>
+            ) : (
+              <>
+                <Link className="font-semibold p-4" href={"/auth/login"}>
+                  Login
+                </Link>
+                <Link
+                  className="bg-orange-400 rounded-2xl px-4 py-2 mx-2"
+                  href={"/auth/register"}
+                >
+                  Register
+                </Link>
+              </>
+            )}
           </div>
         </div>
 
