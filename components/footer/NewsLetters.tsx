@@ -1,4 +1,6 @@
 import React from "react";
+import TextField from "../ui/form/TextField";
+import ButtonNew from "../ui/button";
 
 const NewsLetters = () => {
   return (
@@ -13,17 +15,27 @@ const NewsLetters = () => {
             sont en sécurité avec nous.
           </h2>
 
-          <form action="">
-            <input
+          <form action="" className="mt-4 mb-8">
+            <TextField
+              id="email"
+              name="email"
               type="email"
-              placeholder="Votre  email"
-              className="w-full px-6 py-3 mt-5 rounded-full focus:outline-none "
+              color="solid"
+              placeholder="hello@me.com"
+              autoComplete="email"
+              required
+              className={""}
             />
-            <input
+
+            <ButtonNew
               type="submit"
-              value={"S'inscrire"}
-              className=" bg-orange-400 px-4 py-3 mt-5 rounded-full focus:outline-none text-white font-bold text-sm w-full cursor-pointer hover:bg-orange-500 "
-            />
+              variant="outline"
+              color=""
+              className="mt-3 w-full bg-orange-400"
+              href={""}
+            >
+              Enregistrer
+            </ButtonNew>
           </form>
         </div>
       </div>

@@ -6,11 +6,16 @@ import { getSession } from "../../../lib/nextAuth";
 
 const LoginWithSocial = () => {
   const router = useRouter();
-  const { data } = useSession();
   return (
     <div className="mx-auto grid md:grid-cols-2 px-4">
       {/* ffacebook */}
       <button
+        onClick={() => {
+          signIn("facebook").then(() => {
+            router.refresh();
+            router.push("/");
+          });
+        }}
         type="button"
         className="text-white bg-[#3b5998] hover:bg-[#3b5998]/90 focus:ring-4 focus:outline-none focus:ring-[#3b5998]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#3b5998]/55 mr-2 mb-2"
       >
@@ -33,6 +38,12 @@ const LoginWithSocial = () => {
       </button>
       {/* twitter */}
       <button
+        onClick={() => {
+          signIn("twitter").then(() => {
+            router.refresh();
+            router.push("/");
+          });
+        }}
         type="button"
         className="text-white bg-[#1da1f2] hover:bg-[#1da1f2]/90 focus:ring-4 focus:outline-none focus:ring-[#1da1f2]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#1da1f2]/55 mr-2 mb-2"
       >
@@ -56,7 +67,7 @@ const LoginWithSocial = () => {
 
       <button
         onClick={() => {
-          signIn().then(() => {
+          signIn("github").then(() => {
             router.refresh();
             router.push("/");
           });
@@ -83,6 +94,12 @@ const LoginWithSocial = () => {
       </button>
       {/*  */}
       <button
+        onClick={() => {
+          signIn("google").then(() => {
+            router.refresh();
+            router.push("/");
+          });
+        }}
         type="button"
         className="text-white bg-[#4285F4] hover:bg-[#4285F4]/90 focus:ring-4 focus:outline-none focus:ring-[#4285F4]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#4285F4]/55 mr-2 mb-2"
       >
@@ -104,6 +121,12 @@ const LoginWithSocial = () => {
         Se Connecter avec Google
       </button>
       <button
+        onClick={() => {
+          signIn("apple").then(() => {
+            router.refresh();
+            router.push("/");
+          });
+        }}
         type="button"
         className="text-white bg-[#050708] hover:bg-[#050708]/90 focus:ring-4 focus:outline-none focus:ring-[#050708]/50 font-medium rounded-lg text-sm px-5 py-2.5 text-center inline-flex items-center dark:focus:ring-[#050708]/50 dark:hover:bg-[#050708]/30 mr-2 mb-2"
       >
