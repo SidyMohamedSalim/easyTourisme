@@ -1,4 +1,3 @@
-import { skip } from "node:test";
 import { prisma } from "./prisma";
 
 export const allTours = async () => await prisma.tour.findMany();
@@ -6,7 +5,7 @@ export const allTours = async () => await prisma.tour.findMany();
 export const Besttours = async () =>
   await prisma.tour.findMany({
     orderBy: {
-      rating: "desc",
+      createdAt: "desc",
     },
     take: 6,
   });

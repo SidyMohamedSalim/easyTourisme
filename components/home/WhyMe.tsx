@@ -5,7 +5,7 @@ import React from "react";
 const WhyMe = () => {
   return (
     <section className="relative my-28 py-5 bg-slate-100">
-      <div className="max-w-5xl mx-auto my-4 h-84 bg-covers">
+      <div className="max-w-6xl mx-auto my-4 h-84 bg-covers">
         <div className="mx-3">
           {/* title section */}
           <div>

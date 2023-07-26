@@ -3,8 +3,19 @@ import { Heart, LucideIcon } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { prisma } from "../../../src/db/prisma";
 
-const BlocB = ({ title, image, price, rating, id }: Tour) => {
+export type BlocType = {
+  title: string;
+  image: string;
+  price: number;
+  address: string;
+  id: string;
+  city?: string;
+  country?: string;
+};
+
+const BlocB = ({ title, image, price, id }: BlocType) => {
   return (
     <Link href={`/tours/${id}/`} className="relative my-4 hover:opacity-50 ">
       <div className="absolute top-2 right-2 text-xl flex items-center justify-center bg-white px-2 w-8 h-8 rounded-full ">
@@ -36,7 +47,7 @@ const BlocB = ({ title, image, price, rating, id }: Tour) => {
             <p>⭐</p>
           </div>
           {/* Nombre de personnes qui ont noter */}
-          <p className="mx-2 font-light">{rating}</p>
+          <p className="mx-2 font-light">{price}</p>
         </div>
         {/* Prix */}
         <div>

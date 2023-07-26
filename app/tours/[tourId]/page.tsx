@@ -13,15 +13,10 @@ const page = async ({ params }: { params: { tourId: string } }) => {
       </div>
     );
   }
-  const reviews = await prisma?.review.findMany({
-    where: {
-      tourId: tour?.id,
-    },
-  });
 
   return (
     <div>
-      <div className="max-w-5xl mx-auto py-24 max-sm:px-2 max-xl:px-10">
+      <div className="max-w-6xl mx-auto py-24 max-sm:px-2 max-xl:px-10">
         <div className="grid lg:grid-cols-5 gap-2">
           <div className="lg:col-span-3 m-4">
             <Image
@@ -39,7 +34,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 <div className="grid grid-cols-3  gap-2 text-xs items-center">
                   <div className="flex gap-1 items-center">
                     <Star size={15} color="orange" fill="orange" />
-                    <h3>{tour.rating}</h3>
+                    <h3>{tour.price}</h3>
                   </div>
                   <div className="flex gap-1 items-center col-span-2">
                     <LocateFixed size={15} />
@@ -56,7 +51,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                   <div className="flex gap-1 items-center">
                     <Users2 size={15} />
                     <h3>
-                      <span>{tour.maxGroupSize}</span> People(s)
+                      <span>200</span> People(s)
                     </h3>
                   </div>
                 </div>
@@ -67,88 +62,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
               </div>
             </div>
 
-            {/* avis */}
-            <div className="my-6">
-              <div className="rounded-sm p-6 border">
-                <h1>Reviews ({reviews?.length ?? 0} reviews)</h1>
-
-                <div className="text-xs grid grid-cols-5 gap-2 text-orange-200  w-fit py-4">
-                  <h1 className="flex justify-center items-center">
-                    <span>1</span>
-                    <Star size={15} fill="orange" color="orange" />
-                  </h1>
-                  <h1 className="flex justify-center items-center">
-                    <span>2</span>
-                    <Star size={15} fill="orange" color="orange" />
-                  </h1>
-                  <h1 className="flex justify-center items-center">
-                    <span>3</span>
-                    <Star size={15} fill="orange" color="orange" />
-                  </h1>
-                  <h1 className="flex justify-center items-center">
-                    <span>4</span>
-                    <Star size={15} fill="orange" color="orange" />
-                  </h1>
-                  <h1 className="flex justify-center items-center">
-                    <span>5</span>
-                    <Star size={15} fill="orange" color="orange" />
-                  </h1>
-                </div>
-
-                <div>
-                  <form
-                    action=""
-                    className="w-full  grid grid-cols-6 rounded-full border border-orange-400 py-2 px-4"
-                  >
-                    <input
-                      type="text"
-                      className="border-b col-span-5 m-1 text-xs focus:outline-none hover:outline-none"
-                      placeholder="write your thoughts"
-                    />
-                    <input
-                      type="sumbit"
-                      className="bg-orange-400 hover:bg-orange-500 px-1 py-1 mx-2 text-xs text-center text-white rounded-lg"
-                      placeholder="write your thoughts"
-                      value={"Submit"}
-                    />
-                  </form>
-                </div>
-                {/* deferrents reviews */}
-                <div className="md:overflow-scroll md:max-h-64 mt-6 max-md:mb-[2rem]">
-                  {/* avis */}
-                  {reviews?.map((review, index) => (
-                    <div className="py-3" key={index}>
-                      <div className="flex justify-between pt-6 px-3 items-center">
-                        <div className="flex ">
-                          <User
-                            className="mr-6 font-bold justify-start items-start"
-                            size={30}
-                          />
-                          <div>
-                            <h1 className="font-extrabold">
-                              {review.username}
-                            </h1>
-                            <h3 className="text-sm font-extralight italic">
-                              {review.updatedAt.toDateString()}
-                            </h3>
-                          </div>
-                        </div>
-
-                        <div>
-                          <h1 className="flex justify-center items-center">
-                            <span>{review.rating}</span>
-                            <Star size={15} fill="orange" color="orange" />
-                          </h1>
-                        </div>
-                      </div>
-                      <p className="px-12 font-light text-sm">{review.text}</p>
-                    </div>
-                  ))}
-
-                  {/* fin avis */}
-                </div>
-              </div>
-            </div>
+            {/* avis  a faire ici*/}
           </div>
 
           <div className="lg:col-span-2 border m-4 rounded-md h-fit">
@@ -159,7 +73,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
               </h1>
               <div className="flex items-center">
                 <Star fill="orange" color="orange" size={15} />{" "}
-                <span>({tour.rating})</span>
+                <span>({tour.price})</span>
               </div>
             </div>
 

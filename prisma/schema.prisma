@@ -10,103 +10,71 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-model review {
-  productId String   @id @default(cuid())
-  username  String
-  text      String
-  rating    Int
+model User {
+  id      String           @id @default(cuid())
+  name    String?
+  email   String           @unique
+  image   String?
+  FavTour favoritesTours[] @relation(name: "userFav")
+
+  bookings Booking[] @relation(name: "userBook")
+}
+
+model favoritesTours {
+  TourId String
+  tour   Tour   @relation(name: "favTour", fields: [TourId], references: [id])
+
+  userEmail String
+  user      User   @relation(name: "userFav", fields: [userEmail], references: [email])
+
+  @@id([TourId, userEmail])
+  @@index([TourId, userEmail])
+}
+
+model Options {
+  id     String @id @default(cuid())
+  tourId String
+  tour   Tour   @relation(fields: [tourId], name: "tourOption", references: [id])
+
+  name String
+}
+
+model Booking {
+  id        String  @default(cuid())
+  date      String
+  email     String
+  message   String
+  UserEmail String?
+  user      User?   @relation(name: "userBook", fields: [UserEmail], references: [email])
+
+  TourId String
+  tour   Tour   @relation(name: "tourBook", fields: [TourId], references: [id])
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 
-  Tour   Tour   @relation(fields: [tourId], references: [id])
-  tourId String
-
-  userId String
-  User   User   @relation(fields: [userId], references: [id])
+  @@id([email, TourId])
+  @@index([email, TourId])
 }
 
 model Tour {
-  id           String     @id @default(cuid())
-  title        String
-  city         String
-  image        String
-  adress       String
-  price        Float
-  distance     Float
-  rating       Float
-  maxGroupSize Int
-  featured     Boolean
-  createdAt    DateTime   @default(now())
-  updatedAt    DateTime   @updatedAt
-  reviews      review[]
-  UserTour     UserTour[]
-}
+  id          String @id @default(cuid())
+  title       String
+  description String
+  price       Int
+  address     String
+  city        String
+  country     String
 
-model UserTour {
-  id        String   @id @default(cuid())
+  image String
+
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-  Tour      Tour     @relation(fields: [tourId], references: [id])
-  tourId    String
-  User      User     @relation(fields: [userId], references: [id])
-  userId    String
-  datetime  DateTime @default(now())
 
-  @@unique([tourId, userId])
-}
+  booking Booking[]        @relation(name: "tourBook")
+  FavTour favoritesTours[] @relation(name: "favTour")
 
-model User {
-  id        String     @id @default(cuid())
-  username  String
-  email     String     @unique
-  role      String     @default("user")
-  password  String
-  createdAt DateTime   @default(now())
-  updatedAt DateTime   @updatedAt
-  UserTour  UserTour[]
-  review    review[]
+  options Options[] @relation(name: "tourOption")
 
-  name String?
-
-  emailVerified DateTime?
-  image         String?
-  accounts      Account[]
-  sessions      Session[]
-}
-
-model Account {
-  id                String  @id @default(cuid())
-  userId            String
-  type              String
-  provider          String
-  providerAccountId String
-  refresh_token     String?
-  access_token      String?
-  expires_at        Int?
-  token_type        String?
-  scope             String?
-  id_token          String?
-  session_state     String?
-
-  user User @relation(fields: [userId], references: [id], onDelete: Cascade)
-
-  refresh_token_expires_in Int?
-
-  @@unique([provider, providerAccountId])
-}
-
-model Session {
-  id           String   @id @default(cuid())
-  sessionToken String   @unique
-  userId       String
-  expires      DateTime
-  user         User     @relation(fields: [userId], references: [id], onDelete: Cascade)
-}
-
-model VerificationToken {
-  identifier String
-  token      String   @unique
-  expires    DateTime
-
-  @@unique([identifier, token])
+  @@unique(fields: [address, city, country])
 }

@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/rules-of-hooks */
 "use client";
 import React from "react";
 import Link from "next/link";
@@ -6,8 +7,16 @@ import { Facebook, Github, Linkedin, Mail } from "lucide-react";
 import TextField from "../../../components/ui/form/TextField";
 import ButtonNew from "../../../components/ui/button";
 import LoginWithSocial from "@/components/ui/auth/LoginButtonSocail";
+import { useSession } from "next-auth/react";
+import { useRouter } from "next/navigation";
 
 const page = () => {
+  const router = useRouter();
+  const { data } = useSession();
+
+  if (data?.user) {
+    router.back();
+  }
   return (
     // <div>
     //   <div className="max-w-5xl mx-auto flex justify-center">

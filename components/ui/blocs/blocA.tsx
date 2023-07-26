@@ -3,8 +3,9 @@ import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
+import { BlocType } from "./blocB";
 
-const BlocA = ({ title, image, city, rating, price, id }: Tour) => {
+const BlocA = ({ title, image, city, price, id }: BlocType) => {
   return (
     <div className=" relative  my-4 mr-2 shadow-2xl rounded-sm">
       <div className="opacity-90">
@@ -22,7 +23,7 @@ const BlocA = ({ title, image, city, rating, price, id }: Tour) => {
           </div>
           <div className="flex   gap-1 items-center">
             <Star className="text-orange-300" size={22} />
-            <h3>{rating}</h3>
+            <h3>{"rating"}</h3>
           </div>
         </div>
         <div className="p-3">

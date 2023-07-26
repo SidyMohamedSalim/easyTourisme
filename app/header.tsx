@@ -13,14 +13,14 @@ const Header = () => {
 
   return (
     <header>
-      <div className="max-w-5xl mx-auto max-md:flex-col flex items-center justify-between py-3 ">
-        <div className="flex justify-between max-md:w-full max-md:items-center max-md:px-3">
+      <div className="max-w-6xl mx-auto max-md:flex-col flex items-center justify-between py-2">
+        <div className="flex justify-between  items-center max-md:w-full max-md:items-center max-md:px-3">
           <Link href={"/"} className=" ">
             <Image
               width={300}
               height={200}
               className="w-28"
-              src={"/images/logo.png"}
+              src={"/logo.png"}
               alt=""
             />
           </Link>
@@ -78,11 +78,11 @@ const Header = () => {
             </nav>
             {data ? (
               <div className="">
-                <div className="py-2 my-1 text-center flex ">
+                <div className="py-2 my-1 text-center flex w-14 h-12 ">
                   <Image
                     src={data.user?.image ?? ""}
-                    height={40}
-                    width={40}
+                    height={30}
+                    width={30}
                     alt={data.user?.name ?? ""}
                     className="rounded-full border-1 border-black shadow"
                   />{" "}
@@ -127,10 +127,10 @@ const Header = () => {
               <div className="my-1 text-center flex justify-center items-center ">
                 <Image
                   src={data.user?.image ?? ""}
-                  height={40}
-                  width={40}
+                  height={30}
+                  width={30}
                   alt={data.user?.name ?? ""}
-                  className="rounded-full border-1 border-black shadow mx-4"
+                  className="rounded-full border-1 border-black shadow mx-1 w-9 h-9"
                 />
 
                 <SignOutButton />

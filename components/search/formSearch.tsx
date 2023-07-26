@@ -3,10 +3,10 @@ import React from "react";
 
 const FormSearch = () => {
   return (
-    <div className="bg-[url('/images/hero-img01.jpg')] bg-cover h-[40rem] my-20">
-      <div className="w-full h-full flex">
+    <div className="bg-[url('/assets/images/hero-image.png')] bg-cover h-[40rem] my-20">
+      <div className="w-full h-full flex bg-black bg-opacity-50">
         <form className="max-w-5xl mx-auto flex flex-col items-center justify-center w-fit ">
-          <h1 className="py-2 px-2 italic text-4xl font-light text-center  leading-[3rem]">
+          <h1 className=" text-white py-2 px-2 italic text-4xl font-light text-center  leading-[3rem]">
             Planifier votre voyage avec le meilleur conseiller Touristique
           </h1>
 

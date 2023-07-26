@@ -1,3 +1,5 @@
+/* eslint-disable react-hooks/rules-of-hooks */
+"use client";
 import { getSession } from "@/lib/nextAuth";
 import Image from "next/image";
 import Link from "next/link";
@@ -6,9 +8,16 @@ import TextField from "../../../components/ui/form/TextField";
 import ButtonNew from "../../../components/ui/button";
 import LoginWithSocial from "@/components/ui/auth/LoginButtonSocail";
 import { Github, Facebook } from "lucide-react";
+import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
 
 const page = async () => {
-  const session = await getSession();
+  const router = useRouter();
+  const { data } = useSession();
+
+  if (data?.user) {
+    router.back();
+  }
   return (
     // <div>
     //   <div className="max-w-5xl mx-auto flex justify-center">
