@@ -1,6 +1,7 @@
 import { faker } from "@faker-js/faker";
 import { prisma } from "../src/db/prisma";
 import { randomInt } from "crypto";
+// import { hash } from "bcryptjs";
 
 async function main() {
   // const usersPromises = [];
@@ -15,23 +16,23 @@ async function main() {
   //     })
   //   );
   // }
-  const tourProamises = [];
-  for (let i = 0; i < 20; i++) {
-    tourProamises.push(
-      await prisma.tour.create({
-        data: {
-          title: faker.lorem.lines(),
-          description: faker.lorem.paragraph({ min: 2, max: 5 }),
-          price: Number(faker.commerce.price()),
-          image: faker.image.urlLoremFlickr({ category: "nature" }),
-          city: faker.location.city(),
-          country: faker.location.country(),
-          address: faker.location.streetAddress(),
-        },
-      })
-    );
-  }
-  // const reviewsPromises = [];
+  // const tourProamises = [];
+  // for (let i = 0; i < 20; i++) {
+  //   tourProamises.push(
+  //     await prisma.tour.create({
+  //       data: {
+  //         title: faker.lorem.lines(),
+  //         description: faker.lorem.paragraph({ min: 2, max: 5 }),
+  //         price: Number(faker.commerce.price()),
+  //         image: faker.image.urlLoremFlickr({ category: "nature" }),
+  //         city: faker.location.city(),
+  //         country: faker.location.country(),
+  //         address: faker.location.streetAddress(),
+  //       },
+  //     })
+  //   );
+  // }
+  // // const reviewsPromises = [];
   // for (let i = 0; i < 40; i++) {
   //   const indexTour = randomInt(tourProamises.length);
   //   const indexUser = randomInt(usersPromises.length);
@@ -64,6 +65,17 @@ async function main() {
   //     })
   //   );
   // }
+  // const password = await hash("password123", 12);
+  const user = await prisma.user.upsert({
+    where: { email: "admin@admin.com" },
+    update: {},
+    create: {
+      email: "admin@admin.com",
+      name: "Admin",
+      // password: "salim2019",
+    },
+  });
+  console.log({ user });
 }
 
 main()

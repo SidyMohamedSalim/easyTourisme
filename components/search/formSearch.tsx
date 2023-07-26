@@ -10,7 +10,7 @@ const FormSearch = () => {
             Planifier votre voyage avec le meilleur conseiller Touristique
           </h1>
 
-          <h3 className="text-orange-400  font-extrabold text-xl pb-6">
+          <h3 className="text-sky-400  font-extrabold text-xl pb-6">
             Votre Voyage Notre Passion
           </h3>
           <div className="py-3 w-[80%]">
@@ -63,7 +63,7 @@ const FormSearch = () => {
           <div className="py-3 w-[80%]">
             <input
               type={"submit"}
-              className="bg-orange-400 hover:bg-orange-500 px-1 py-2  text-center text-white rounded-lg p-2 w-full text-lg"
+              className="bg-sky-400 hover:bg-sky-500 px-1 py-2  text-center text-white rounded-lg p-2 w-full text-lg"
               value={"Rechercher"}
             />
           </div>

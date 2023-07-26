@@ -11,7 +11,7 @@ const LoginWithSocial = () => {
       {/* ffacebook */}
       <button
         onClick={() => {
-          signIn("facebook").then(() => {
+          signIn("google").then(() => {
             router.refresh();
             router.push("/");
           });

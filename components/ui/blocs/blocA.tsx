@@ -18,11 +18,11 @@ const BlocA = ({ title, image, city, price, id }: BlocType) => {
         />
         <div className="text-xs flex justify-between text-center items-center px-3 pt-3">
           <div className="flex  gap-1 items-center">
-            <MapPin className="text-[0.3rem] text-orange-300" size={22} />
+            <MapPin className="text-[0.3rem] text-sky-300" size={22} />
             <h3>{city}</h3>
           </div>
           <div className="flex   gap-1 items-center">
-            <Star className="text-orange-300" size={22} />
+            <Star className="text-sky-300" size={22} />
             <h3>{"rating"}</h3>
           </div>
         </div>
@@ -34,14 +34,12 @@ const BlocA = ({ title, image, city, price, id }: BlocType) => {
 
         <div className="px-3 pb-2 flex justify-between items-center">
           <h4 className="text-sm">
-            <span className="text-orange-400 text-base font-bold">
-              ${price}{" "}
-            </span>
+            <span className="text-sky-400 text-base font-bold">${price} </span>
             /person
           </h4>
           <Link
             href={`/tours/${id}`}
-            className="bg-orange-400 hover:bg-orange-600 px-2 py-1 text-sm text-white rounded-md"
+            className="bg-sky-400 hover:bg-sky-600 px-2 py-1 text-sm text-white rounded-md"
           >
             Voir plus
           </Link>

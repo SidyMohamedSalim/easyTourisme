@@ -36,7 +36,7 @@ const WhyMe = () => {
               />
             </div>
             <div className=" row-span-1 col-span-2  flex bg-white justify-center items-center flex-col text-center px-3 md:col-span-1 md:row-span-2">
-              <Globe2 className="mb-2 mt-4" size={30} color={"orange"} />
+              <Globe2 className="mb-2 mt-4" size={30} color={"sky"} />
               <h1 className="text-2xl font-medium py-2 italic">
                 Passionate Travel
               </h1>
@@ -46,7 +46,7 @@ const WhyMe = () => {
               </p>
             </div>
             <div className=" row-span-1 col-span-2 bg-white flex justify-center items-center flex-col text-center px-3 md:col-span-1 md:row-span-2">
-              <LocateFixed className="my-2" size={30} color={"orange"} />
+              <LocateFixed className="my-2" size={30} color={"sky"} />
               <h1 className="text-2xl font-medium py-2 italic">
                 Beautiful Place
               </h1>

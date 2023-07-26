@@ -9,6 +9,7 @@ import ButtonNew from "../../../components/ui/button";
 import LoginWithSocial from "@/components/ui/auth/LoginButtonSocail";
 import { useSession } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { RegisterForm } from "./RegistrerForm";
 
 const page = () => {
   const router = useRouter();
@@ -143,21 +144,21 @@ const page = () => {
     //             <input
     //               type="email"
     //               placeholder="Your Email"
-    //               className="w-full md:w-[30rem] py-2 px-3 my-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+    //               className="w-full md:w-[30rem] py-2 px-3 my-4 rounded-md focus:outline-1 focus:outline-sky-300 shadow-lg"
     //             />
     //           </div>
     //           <div className="mx-auto max-md:w-full">
     //             <input
     //               type="password"
     //               placeholder="password"
-    //               className="w-full md:w-[30rem] py-2  px-3 my-4  rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+    //               className="w-full md:w-[30rem] py-2  px-3 my-4  rounded-md focus:outline-1 focus:outline-sky-300 shadow-lg"
     //             />
     //           </div>
     //           <div className="mx-auto max-md:w-full">
     //             <input
     //               type="password"
     //               placeholder="Confirm password"
-    //               className="w-full md:w-[30rem] pr-5 py-2 px-3  my-4 rounded-md focus:outline-1 focus:outline-orange-300 shadow-lg"
+    //               className="w-full md:w-[30rem] pr-5 py-2 px-3  my-4 rounded-md focus:outline-1 focus:outline-sky-300 shadow-lg"
     //             />
     //           </div>
 
@@ -165,14 +166,14 @@ const page = () => {
     //             <input
     //               type="submit"
     //               value={"S'inscrire"}
-    //               className="bg-orange-400 px-4 py-2 rounded-md text-white hover:bg-orange-500 focus:bg-orange-500"
+    //               className="bg-sky-400 px-4 py-2 rounded-md text-white hover:bg-sky-500 focus:bg-sky-500"
     //             />
     //           </div>
     //         </form>
 
     //         <p className="m-4">
     //           Deja Un Compte ?{" "}
-    //           <Link href="/auth/login/" className="text-orange-400 italic">
+    //           <Link href="/auth/login/" className="text-sky-400 italic">
     //             Se Connecter
     //           </Link>
     //         </p>
@@ -182,29 +183,7 @@ const page = () => {
     //   </div>
     // </div>
     <div className="flex flex-col max-w-lg mx-auto px-2 mt-28">
-      <form>
-        <div className="space-y-2">
-          <TextField
-            id="email"
-            name="email"
-            type="email"
-            label="Inscription"
-            placeholder="hello@me.com"
-            autoComplete="email"
-            required
-            className={""}
-          />
-        </div>
-        <ButtonNew
-          type="submit"
-          variant="outline"
-          color="gray"
-          className="mt-3 w-full"
-          href={""}
-        >
-          Continue avec email
-        </ButtonNew>
-      </form>
+      <RegisterForm />
       <div className="mx-auto my-10 flex w-full items-center justify-evenly before:mr-4 before:block before:h-px before:flex-grow before:bg-stone-400 after:ml-4 after:block after:h-px after:flex-grow after:bg-stone-400">
         ou
       </div>
@@ -224,12 +203,6 @@ const page = () => {
             d="M488 261.8C488 403.3 391.1 504 248 504 110.8 504 0 393.2 0 256S110.8 8 248 8c66.8 0 123 24.5 166.3 64.9l-67.5 64.9C258.5 52.6 94.3 116.6 94.3 256c0 86.5 69.1 156.6 153.7 156.6 98.2 0 135-70.4 140.8-106.9H248v-85.3h236.1c2.3 12.7 3.9 24.9 3.9 41.4z"
           ></path>
         </svg>
-      </LoginWithSocial>
-      <LoginWithSocial nameSocial="facebook">
-        <Facebook className="mr-8 w-5 text-blue-500" fill="blue" />
-      </LoginWithSocial>
-      <LoginWithSocial nameSocial="github">
-        <Github className="mr-8 w-5" />
       </LoginWithSocial>
     </div>
   );

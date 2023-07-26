@@ -7,7 +7,7 @@ const NewsLetters = () => {
     <div className="bg-slate-100">
       <div className="max-w-2xl mx-auto  px-20 pt-20 pb-10 ">
         <div className="pr-4 max-md:col-span-3 text-center">
-          <h2 className="font-second text-4xl text-orange-300">
+          <h2 className="font-second text-4xl text-sky-300">
             Abonnez-vous a notre newsletter
           </h2>
           <h2 className="text-sm font-extralight italic">
@@ -31,7 +31,7 @@ const NewsLetters = () => {
               type="submit"
               variant="outline"
               color=""
-              className="mt-3 w-full bg-orange-400"
+              className="mt-3 w-full bg-sky-400"
               href={""}
             >
               Enregistrer

@@ -126,12 +126,6 @@ const page = async () => {
           ></path>
         </svg>
       </LoginWithSocial>
-      <LoginWithSocial nameSocial="facebook">
-        <Facebook className="mr-8 w-5 text-blue-500" fill="blue" />
-      </LoginWithSocial>
-      <LoginWithSocial nameSocial="github">
-        <Github className="mr-8 w-5" />
-      </LoginWithSocial>
     </div>
   );
 };

@@ -5,11 +5,11 @@ import Link from "next/link";
 import { useState } from "react";
 import { useSession } from "next-auth/react";
 import SignOutButton from "@/components/auth/SignOutButton";
+import ProfileMenu from "@/components/ui/ProfileMenu";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const { data } = useSession();
-  console.log(data);
 
   return (
     <header>
@@ -60,19 +60,19 @@ const Header = () => {
           <div className=" flex flex-col items-center justify-center  text-center  gap-1 md:hidden w-full bg-slate-100 py-3">
             <nav className=" text-md font-light w-full ">
               <div className="py-2 my-1 items-center flex flex-col hover:bg-white w-full">
-                <Link href={"/"} className="px-4 text-orange-500 w-full">
-                  Home
+                <Link href={"/"} className="px-4 text-sky-500 w-full">
+                  Accueil
                 </Link>
               </div>
 
               <div className="py-2 my-1 hover:bg-white">
                 <Link href={"/tours"} className="px-4  w-full">
-                  Découvrir
+                  Destinations
                 </Link>
               </div>
               <div className="py-2 my-1 hover:bg-white w-full">
                 <Link href={"/about"} className="px-4 w-full">
-                  About
+                  Découvrir
                 </Link>
               </div>
             </nav>
@@ -91,17 +91,12 @@ const Header = () => {
               </div>
             ) : (
               <div className="">
-                <div className="py-2 my-1 hover:bg-white">
-                  <Link className="font-semibold p-4" href={"/auth/login"}>
-                    Login
-                  </Link>
-                </div>
                 <div className="py-2 my-1">
                   <Link
-                    className="bg-orange-400 rounded-2xl px-4 py-2"
-                    href={"/auth/register"}
+                    className="bg-sky-400 rounded-2xl px-4 py-2"
+                    href={"/auth/login"}
                   >
-                    Register
+                    Se Connecter
                   </Link>
                 </div>
               </div>
@@ -110,41 +105,35 @@ const Header = () => {
         )}
         {/*  */}
 
-        <div className="flex justify-evenly gap-12 max-md:hidden">
-          <nav className="mr-14 text-md font-light">
-            <Link href={"/"} className="px-4 text-orange-500">
+        <div className="flex  items-center mr-4 justify-evenly gap-12 max-md:hidden">
+          <nav className="mr-14 text-md font-light ">
+            <Link href={"/"} className="px-4 text-sky-500">
               Accueil
             </Link>
             <Link href={"/tours"} className="px-4">
-              Découvrir
+              Destinations
             </Link>
             <Link href={"/about"} className="px-4">
-              A propos
+              Découvrir
             </Link>
           </nav>
+
           <div className="">
             {data ? (
               <div className="my-1 text-center flex justify-center items-center ">
-                <Image
-                  src={data.user?.image ?? ""}
-                  height={30}
-                  width={30}
-                  alt={data.user?.name ?? ""}
-                  className="rounded-full border-1 border-black shadow mx-1 w-9 h-9"
-                />
-
-                <SignOutButton />
+                <ProfileMenu />
+                {data.user?.email}
               </div>
             ) : (
               <>
                 <Link className="font-semibold p-4" href={"/auth/login"}>
-                  Login
+                  Se Connecter
                 </Link>
                 <Link
-                  className="bg-orange-400 rounded-2xl px-4 py-2 mx-2"
+                  className="bg-sky-400 rounded-2xl px-4 py-2 mx-2"
                   href={"/auth/register"}
                 >
-                  Register
+                  S&apos;inscrire
                 </Link>
               </>
             )}

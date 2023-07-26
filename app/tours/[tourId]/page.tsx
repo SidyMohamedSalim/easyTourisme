@@ -9,7 +9,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
   if (!tour) {
     return (
       <div>
-        <h1 className="text-4xl mx-auto">NoT Found</h1>
+        <h1 className="text-4xl mx-auto">Destination Non Trouvé</h1>
       </div>
     );
   }
@@ -33,7 +33,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 <h1 className="py-3 font-medium text-2xl">{tour.city}</h1>
                 <div className="grid grid-cols-3  gap-2 text-xs items-center">
                   <div className="flex gap-1 items-center">
-                    <Star size={15} color="orange" fill="orange" />
+                    <Star size={15} color="sky" fill="sky" />
                     <h3>{tour.price}</h3>
                   </div>
                   <div className="flex gap-1 items-center col-span-2">
@@ -72,7 +72,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 /person
               </h1>
               <div className="flex items-center">
-                <Star fill="orange" color="orange" size={15} />{" "}
+                <Star fill="sky" color="sky" size={15} />{" "}
                 <span>({tour.price})</span>
               </div>
             </div>
@@ -128,7 +128,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                   <p>$109</p>
                 </div>
 
-                <button className="w-full bg-orange-400  py-1 text-sm rounded-3xl mt-4 text-white hover:bg-orange-500">
+                <button className="w-full bg-sky-400  py-1 text-sm rounded-3xl mt-4 text-white hover:bg-sky-500">
                   Reserver Maintenant
                 </button>
               </div>

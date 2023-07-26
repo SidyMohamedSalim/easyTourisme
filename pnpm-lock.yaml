@@ -13,6 +13,7 @@ specifiers:
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.6
   autoprefixer: 10.4.14
+  bcryptjs: ^2.4.3
   class-variance-authority: ^0.6.1
   clsx: ^1.2.1
   eslint: 8.43.0
@@ -23,7 +24,7 @@ specifiers:
   next: 13.4.7
   next-auth: ^4.22.1
   postcss: 8.4.24
-  prisma: ^4.16.1
+  prisma: link:@/lib/prisma
   react: 18.2.0
   react-dom: 18.2.0
   react-icons: ^4.10.1
@@ -45,6 +46,7 @@ dependencies:
   '@types/react': 18.2.14
   '@types/react-dom': 18.2.6
   autoprefixer: 10.4.14_postcss@8.4.24
+  bcryptjs: 2.4.3
   class-variance-authority: 0.6.1
   clsx: 1.2.1
   eslint: 8.43.0
@@ -1031,6 +1033,10 @@ packages:
 
   /balanced-match/1.0.2:
     resolution: {integrity: sha512-3oSeUO0TMV67hN1AmbXsK4yaqU7tjiHlbxRDZOpH0KW9+CeX4bRAaX0Anxt0tx2MrpRpWwQaPwIlISEJhYU5Pw==}
+    dev: false
+
+  /bcryptjs/2.4.3:
+    resolution: {integrity: sha512-V/Hy/X9Vt7f3BbPJEi8BdVFMByHi+jNXrYkW3huaybV/kQ0KJg0Y6PkEMbn+zeT+i+SiKZ/HMqJGIIt4LZDqNQ==}
     dev: false
 
   /big-integer/1.6.51:

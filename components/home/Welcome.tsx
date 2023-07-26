@@ -11,12 +11,12 @@ const Welcome = () => {
     //     <div className=" mx-auto flex max-md:flex-col max-md:px-0 justify-between items-center max-xl:px-4 pt-24">
     //       {/* left */}
     //       <div className="w-[48%] pr-6 max-md:px-6 max-md:w-full max-md:text-center">
-    //         <div className="bg-orange-200 w-fit px-4 py-2 rounded-full font-[cursive]">
+    //         <div className="bg-sky-200 w-fit px-4 py-2 rounded-full font-[cursive]">
     //           Melleure Opportunite
     //         </div>
     //         <h1 className="font-semibold text-4xl py-6 space-x-4 leading-10">
     //           Traveling opens the door to creating{" "}
-    //           <span className="text-orange-400">memories</span>
+    //           <span className="text-sky-400">memories</span>
     //         </h1>
     //         <p className="text-sm font-light leading-7">
     //           Lorem ipsum dolor sit amet consectetur, adipisicing elit.
