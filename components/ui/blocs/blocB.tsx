@@ -1,4 +1,3 @@
-import { Tour } from "@prisma/client";
 import Image from "next/image";
 import Link from "next/link";
 import React from "react";
@@ -20,7 +19,7 @@ const BlocB = ({ image, city, id }: BlocType) => {
     <div>
       <Link href={`/tours/${id}/`} className="relative ">
         <div className="absolute top-2 right-2 z-50 text-xl flex items-center justify-center  ">
-          <Heart colorDefault="white" />
+          <Heart colorDefault="white" tourId={id} />
         </div>
         {/* images */}
         <h1 className="absolute bottom-2 left-2 font-extrabold text-xl flex items-center justify-center text-white px-2  rounded-full ">

@@ -55,12 +55,9 @@ export async function GET(req: Request, { params }: paramsType) {
         },
       },
     });
+    console.log(favorite);
 
-    if (favorite) {
-      return new Response(JSON.stringify(favorite));
-    } else {
-      return new Response(JSON.stringify({ message: "Favorie non Trouvé" }));
-    }
+    return new Response(JSON.stringify(favorite));
   } else {
     return new Response(
       JSON.stringify({ message: "Vous devez vous connecté" })

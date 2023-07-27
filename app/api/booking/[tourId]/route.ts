@@ -87,13 +87,14 @@ export async function DELETE(req: Request, { params }: paramsType) {
   const session = await getServerSession(authOptions);
   if (session?.user?.email) {
     const { tourId } = queryScheme.parse(params);
-    const body = BookVisitScheme.parse(req.json());
 
     try {
       const bookExist = await prisma.booking.findUnique({
-        email_TourId: {
-          email: session.user.email,
-          TourId: tourId,
+        where: {
+          email_TourId: {
+            email: session.user.email,
+            TourId: tourId,
+          },
         },
       });
 

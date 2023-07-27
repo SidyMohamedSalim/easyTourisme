@@ -1,4 +1,3 @@
-import { Tour } from "@prisma/client";
 import { MapPin, Star } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
@@ -25,7 +24,7 @@ const BlocA = ({ title, image, city, id, address }: BlocType) => {
             </h3>
           </div>
           <div className="absolute z-50 top-2 right-2 gap-1 items-center">
-            <Heart colorDefault="white" />
+            <Heart colorDefault="white" tourId={id} />
           </div>
         </div>
         <div className="p-3">
