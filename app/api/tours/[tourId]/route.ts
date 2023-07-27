@@ -7,45 +7,38 @@ export const queryScheme = z.object({
   tourId: z.string(),
 });
 
-export default apiHandler({
-  bodyScheme: tourScheme,
-  queryScheme: queryScheme,
-  endpoints: {
-    GET: async (req, res) => {
-      const { tourId } = queryScheme.parse(req.query);
-      console.log(tourId);
+type paramsType = { params: { tourId: string } };
 
-      try {
-        const tour = await prisma.tour.findUnique({
-          where: {
-            id: tourId,
-          },
-        });
-
-        res.status(200).json({ tour });
-      } catch (error: any) {
-        throw new Error(error.message);
-      }
+export async function GET(req: Request, { params }: paramsType) {
+  const { tourId } = queryScheme.parse(params);
+  const tours = await prisma.tour.findUnique({
+    where: {
+      id: tourId,
     },
-    POST: async (req, res) => {
-      const body = tourScheme.parse(req.body);
+  });
 
-      console.log(req.body);
-      try {
-        const tour = await prisma.tour.create({
-          data: {
-            ...body,
-          },
-        });
+  return new Response(JSON.stringify({ tours }));
+}
 
-        res.status(200).send({ message: "Destination Ajouté", tour: tour });
-      } catch (error: any) {
-        if (error.code === "P2002") {
-          throw new Error("Destination Deja existant");
-        }
+export async function POST(req: Request, { params }: paramsType) {
+  const body = tourScheme.parse(req.body);
 
-        throw new Error(error.message);
-      }
-    },
-  },
-});
+  console.log(req.body);
+  try {
+    const tour = await prisma.tour.create({
+      data: {
+        ...body,
+      },
+    });
+
+    return new Response(
+      JSON.stringify({ message: "Destination Ajouté", tour: tour })
+    );
+  } catch (error: any) {
+    if (error.code === "P2002") {
+      throw new Error("Destination Deja existant");
+    }
+
+    throw new Error(error.message);
+  }
+}

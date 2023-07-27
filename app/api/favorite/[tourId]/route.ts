@@ -8,96 +8,104 @@ export const queryScheme = z.object({
   tourId: z.string(),
 });
 
-export default apiHandler({
-  endpoints: {
-    GET: async (req, res) => {
-      const session = await getServerSession(authOptions);
+type paramsType = { params: { tourId: string } };
 
-      if (session?.user?.email) {
-        const { tourId } = queryScheme.parse(req.query);
-        const favorite = await prisma.favoritesTours.findMany({
-          where: {
-            userEmail: session.user?.email,
+export async function POST(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  try {
+    const { tourId } = queryScheme.parse(params);
+    const isFav = await prisma.favoritesTours.findUnique({
+      where: {
+        TourId_userEmail: {
+          userEmail: session?.user?.email,
+          TourId: tourId,
+        },
+      },
+    });
+
+    if (isFav) {
+      return new Response(JSON.stringify({ message: "Deja dans fav" }));
+    }
+
+    const favorite = await prisma.favoritesTours.create({
+      data: {
+        TourId: tourId,
+        userEmail: session?.user?.email,
+      },
+    });
+
+    return new Response(JSON.stringify({ message: "Ajout reussi", favorite }), {
+      status: 200,
+    });
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+}
+
+export async function GET(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.email) {
+    const { tourId } = queryScheme.parse(params);
+
+    const favorite = await prisma.favoritesTours.findUnique({
+      where: {
+        TourId_userEmail: {
+          userEmail: session.user.email,
+          TourId: tourId,
+        },
+      },
+    });
+
+    if (favorite) {
+      return new Response(JSON.stringify(favorite));
+    } else {
+      return new Response(JSON.stringify({ message: "Favorie non Trouvé" }));
+    }
+  } else {
+    return new Response(
+      JSON.stringify({ message: "Vous devez vous connecté" })
+    );
+  }
+}
+
+export async function DELETE(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.email) {
+    try {
+      const { tourId } = queryScheme.parse(params);
+      const isFav = await prisma.favoritesTours.findUnique({
+        where: {
+          TourId_userEmail: {
+            userEmail: session.user.email,
             TourId: tourId,
+          },
+        },
+      });
+
+      if (!isFav) {
+        return new Response(JSON.stringify({ message: "Favori non trouvée" }), {
+          status: 404,
+        });
+      } else {
+        await prisma.favoritesTours.delete({
+          where: {
+            TourId_userEmail: {
+              userEmail: session.user.email,
+              TourId: tourId,
+            },
           },
         });
 
-        res.send({ favorite });
-      } else {
-        res.status(201).send({ message: "vous n'etes pas connecte" });
+        return new Response(JSON.stringify({ message: " Favorie annulée" }), {
+          status: 200,
+        });
       }
-    },
-    POST: async (req, res) => {
-      const session = await getServerSession(authOptions);
-
-      if (session?.user?.email) {
-        try {
-          const { tourId } = queryScheme.parse(req.query);
-          const isFav = await prisma.favoritesTours.findUnique({
-            where: {
-              TourId_userEmail: {
-                userEmail: session.user?.email,
-                TourId: tourId,
-              },
-            },
-          });
-
-          if (isFav) {
-            res.status(201).json({ message: "Deja dans fav" });
-            return;
-          }
-
-          const favorite = await prisma.favoritesTours.create({
-            data: {
-              TourId: tourId,
-              userEmail: session.user.email,
-            },
-          });
-
-          res.send({ message: "Ajout Reussi", favorite });
-        } catch (err: any) {
-          throw new Error(err.message);
-        }
-      } else {
-        res.status(201).send({ message: "vous n'etes pas connecte" });
-      }
-    },
-    DELETE: async (req, res) => {
-      const session = await getServerSession(authOptions);
-
-      if (session?.user?.email) {
-        try {
-          const { tourId } = queryScheme.parse(req.query);
-          const isFav = await prisma.favoritesTours.findUnique({
-            where: {
-              TourId_userEmail: {
-                userEmail: session.user.email,
-                TourId: tourId,
-              },
-            },
-          });
-
-          if (!isFav) {
-            res.status(404).json({ message: "Fav non trouvée" });
-            return;
-          } else {
-            await prisma.favoritesTours.delete({
-              where: {
-                TourId_userEmail: {
-                  userEmail: session.user.email,
-                  TourId: tourId,
-                },
-              },
-            });
-
-            res.status(200).json({ message: "Fav annulée" });
-          }
-        } catch (err: any) {
-          throw new Error(err.message);
-        }
-      } else {
-        res.status(201).send({ message: "vous n'etes pas connecte" });
-      }
-    },
-  },
-});
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  } else {
+    return new Response(
+      JSON.stringify({ message: "Vous devez vous connecté" })
+    );
+  }
+}

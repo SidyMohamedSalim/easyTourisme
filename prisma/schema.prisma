@@ -25,6 +25,8 @@ model User {
   FavTour favoritesTours[] @relation(name: "userFav")
 
   bookings Booking[] @relation(name: "userBook")
+
+  Reviews Review[]
 }
 
 model favoritesTours {
@@ -50,8 +52,9 @@ model Booking {
   id        String  @default(cuid())
   date      String
   email     String
-  message   String
+  message   String?
   UserEmail String?
+  phone     String?
   user      User?   @relation(name: "userBook", fields: [UserEmail], references: [email])
 
   TourId String
@@ -83,7 +86,20 @@ model Tour {
 
   options Options[] @relation(name: "tourOption")
 
+  Reviews Review[]
+
   @@unique(fields: [address, city, country])
+}
+
+model Review {
+  id      String @id @default(cuid())
+  message String
+
+  userEmail String
+  user      User   @relation(fields: [userEmail], references: [email])
+
+  tourId String
+  Tour   Tour   @relation(fields: [tourId], references: [id])
 }
 
 model Account {

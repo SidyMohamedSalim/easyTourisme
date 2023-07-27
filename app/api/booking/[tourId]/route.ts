@@ -1,114 +1,132 @@
 import { apiHandler } from "@/src/server/api/apiHandler";
 import { z } from "zod";
-import booking from "../route";
 import { prisma } from "../../../../src/db/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
-
-export const queryScheme = z.object({
+import { BookVisitScheme } from "@/src/Scheme/ZodSheme";
+const queryScheme = z.object({
   tourId: z.string(),
 });
 
-const bodyScheme = z.object({
-  date: z.string(),
-  email: z.string().email(),
-  message: z.string(),
-});
+type paramsType = { params: { tourId: string } };
 
-export default apiHandler({
-  endpoints: {
-    GET: async (req, res) => {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.email) {
-        const { tourId } = queryScheme.parse(req.query);
+export async function POST(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  const data = await req.json();
 
-        const booking = await prisma.booking.findMany({
+  try {
+    const tourId = params.tourId;
+    const body = BookVisitScheme.parse(data);
+
+    const user = await prisma.user.findUnique({
+      where: {
+        email: session?.user?.email,
+      },
+    });
+
+    const bookExist = await prisma.booking.findUnique({
+      where: {
+        email_TourId: {
+          email: session?.user?.email ?? "",
+          TourId: tourId,
+        },
+      },
+    });
+
+    if (bookExist) {
+      return new Response(
+        JSON.stringify({ message: "Destination deja Reservée" }),
+        {
+          status: 200,
+        }
+      );
+    }
+
+    const booking = await prisma.booking.create({
+      data: {
+        ...body,
+        TourId: tourId,
+        email: user.email ?? "",
+        UserEmail: body.email,
+      },
+    });
+    return new Response(
+      JSON.stringify({ message: "Destination deja Reservée", booking }),
+      {
+        status: 200,
+      }
+    );
+  } catch (err: any) {
+    throw new Error(err.message);
+  }
+}
+
+export async function GET(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.email) {
+    const { tourId } = queryScheme.parse(params);
+
+    const booking = await prisma.booking.findUnique({
+      where: {
+        email_TourId: {
+          email: session.user.email,
+          TourId: tourId,
+        },
+      },
+    });
+
+    return new Response(JSON.stringify(booking));
+  } else {
+    return new Response(
+      JSON.stringify({ message: "Vous devez vous connecté" })
+    );
+  }
+}
+
+export async function DELETE(req: Request, { params }: paramsType) {
+  const session = await getServerSession(authOptions);
+  if (session?.user?.email) {
+    const { tourId } = queryScheme.parse(params);
+    const body = BookVisitScheme.parse(req.json());
+
+    try {
+      const bookExist = await prisma.booking.findUnique({
+        email_TourId: {
+          email: session.user.email,
+          TourId: tourId,
+        },
+      });
+
+      if (!bookExist) {
+        return new Response(
+          JSON.stringify({ message: "reservation non trouvée" }),
+          {
+            status: 404,
+          }
+        );
+      } else {
+        await prisma.booking.delete({
           where: {
-            email: session?.user?.email,
-            TourId: tourId,
+            email_TourId: {
+              email: session.user.email,
+              TourId: tourId,
+            },
           },
         });
 
-        res.send({ booking });
-      } else {
-        res.status(201).json({ message: "Vous devez vous connecté" });
-      }
-    },
-    POST: async (req, res) => {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.email) {
-        try {
-          const { tourId } = queryScheme.parse(req.query);
-          const body = bodyScheme.parse(req.body);
-          const user = await prisma.user.findFirst();
-
-          const bookExist = await prisma.booking.findUnique({
-            where: {
-              email_TourId: {
-                email: session.user.email,
-                TourId: tourId,
-              },
-            },
-          });
-
-          if (bookExist) {
-            res.status(201).json({ message: "Destination déja reservée" });
-            return;
+        return new Response(
+          JSON.stringify({ message: " Reservation annulée" }),
+          {
+            status: 200,
           }
-
-          const booking = await prisma.booking.create({
-            data: {
-              ...body,
-              TourId: tourId,
-              UserEmail: user?.email,
-            },
-          });
-
-          res.send({ message: "Reservation Reussi", booking });
-        } catch (err: any) {
-          throw new Error(err.message);
-        }
-      } else {
-        res.status(201).json({ message: "Vous devez vous connecté" });
+        );
       }
-    },
-    DELETE: async (req, res) => {
-      const session = await getServerSession(authOptions);
-      if (session?.user?.email) {
-        const { tourId } = queryScheme.parse(req.query);
-        const body = bodyScheme.parse(req.body);
-
-        try {
-          const bookExist = await prisma.booking.findUnique({
-            where: {
-              email_TourId: {
-                email: body.email ?? session?.user.email,
-                TourId: tourId,
-              },
-            },
-          });
-
-          if (!bookExist) {
-            res.status(404).json({ message: "reservation non trouvée" });
-            return;
-          } else {
-            await prisma.booking.delete({
-              where: {
-                email_TourId: {
-                  email: session.user.email,
-                  TourId: tourId,
-                },
-              },
-            });
-
-            res.status(200).json({ message: "Reservation annulée" });
-          }
-        } catch (err: any) {
-          throw new Error(err.message);
-        }
-      } else {
-        res.status(201).json({ message: "Vous devez vous connecté" });
-      }
-    },
-  },
-});
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  } else {
+    return new Response(
+      JSON.stringify({ message: "Vous devez vous connecté" })
+    );
+  }
+}

@@ -56,7 +56,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 <h1 className="font-bold text-xl py-3">
                   Envie de Faire Un tour ?
                 </h1>
-                <FormContact />
+                <FormContact tourId={tour.id} />
               </div>
             </div>
             <div className="py-3 lg:col-span-2  border my-5 rounded-md w-full p-2 px-8">

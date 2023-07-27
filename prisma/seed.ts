@@ -21,7 +21,7 @@ async function main() {
     tourProamises.push(
       await prisma.tour.create({
         data: {
-          title: faker.lorem.lines(),
+          title: faker.lorem.words({ min: 1, max: 3 }),
           description: faker.lorem.paragraph({ min: 2, max: 5 }),
           price: Number(faker.commerce.price()),
           image: faker.image.urlLoremFlickr({ category: "nature" }),
@@ -66,16 +66,16 @@ async function main() {
   //   );
   // }
   // const password = await hash("password123", 12);
-  const user = await prisma.user.upsert({
-    where: { email: "admin@admin.com" },
-    update: {},
-    create: {
-      email: "admin@admin.com",
-      name: "Admin",
-      // password: "salim2019",
-    },
-  });
-  console.log({ user });
+  // const user = await prisma.user.upsert({
+  //   where: { email: "admin@admin.com" },
+  //   update: {},
+  //   create: {
+  //     email: "admin@admin.com",
+  //     name: "Admin",
+  //     // password: "salim2019",
+  //   },
+  // });
+  // console.log({ user });
 }
 
 main()

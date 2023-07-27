@@ -1,15 +1,11 @@
-import { apiHandler } from "@/src/server/api/apiHandler";
 import { prisma } from "../../../src/db/prisma";
 
-export default apiHandler({
-  endpoints: {
-    GET: async (req, res) => {
-      const tours = await prisma.tour.findMany({
-        orderBy: {
-          createdAt: "desc",
-        },
-      });
-      res.send({ tours });
+export async function GET(req: Request) {
+  const tours = await prisma.tour.findMany({
+    orderBy: {
+      createdAt: "desc",
     },
-  },
-});
+  });
+
+  return new Response(JSON.stringify({ tours }));
+}

@@ -14,3 +14,10 @@ export const userScheme = z.object({
   name: z.string(),
   email: z.string(),
 });
+
+export const BookVisitScheme = z.object({
+  date: z.string(),
+  email: z.string().email(),
+  message: z.string(),
+  phone: z.string(),
+});
