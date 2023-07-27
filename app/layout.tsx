@@ -1,9 +1,11 @@
 import Footer from "@/components/footer/Footer";
+import { getServerSession } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
 import "./globals.css";
 import Header from "./header";
 import Providers from "./providers";
+import { authOptions } from "../lib/auth";
 
 export const metadata = {
   title: "Create Next App",

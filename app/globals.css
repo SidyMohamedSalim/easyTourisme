@@ -19,7 +19,7 @@
     --border: 214.3 31.8% 91.4%;
     --input: 214.3 31.8% 91.4%;
 
-    --primary: 222.2 47.4% 11.2%;
+    --primary: 187, 86%, 54%;
     --primary-foreground: 210 40% 98%;
 
     --secondary: 210 40% 96.1%;
@@ -87,7 +87,7 @@ script .icon {
   }
 
   button {
-    @apply p-3 border bg-gradient-to-r from-[hsl(var(--primary))] to-[hsl(var(--primary))] text-white rounded-md;
+    @apply bg-sky-400 hover:bg-sky-600 px-2 py-1 text-base text-white rounded-md;
   }
   .icon {
     @apply text-2xl cursor-pointer;

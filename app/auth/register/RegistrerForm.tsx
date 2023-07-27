@@ -47,13 +47,13 @@ export const RegisterForm = () => {
 
   return (
     <form onSubmit={onSubmit}>
-      <div className="space-y-2">
+      <div className="space-y-2  ">
         <TextField
           id="name"
           label="Nom"
           placeholder="John Doe"
           autoComplete="email"
-          className={""}
+          className={"w-full"}
           required
           type="text"
           name="name"

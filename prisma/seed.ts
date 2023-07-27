@@ -16,22 +16,22 @@ async function main() {
   //     })
   //   );
   // }
-  // const tourProamises = [];
-  // for (let i = 0; i < 20; i++) {
-  //   tourProamises.push(
-  //     await prisma.tour.create({
-  //       data: {
-  //         title: faker.lorem.lines(),
-  //         description: faker.lorem.paragraph({ min: 2, max: 5 }),
-  //         price: Number(faker.commerce.price()),
-  //         image: faker.image.urlLoremFlickr({ category: "nature" }),
-  //         city: faker.location.city(),
-  //         country: faker.location.country(),
-  //         address: faker.location.streetAddress(),
-  //       },
-  //     })
-  //   );
-  // }
+  const tourProamises = [];
+  for (let i = 0; i < 20; i++) {
+    tourProamises.push(
+      await prisma.tour.create({
+        data: {
+          title: faker.lorem.lines(),
+          description: faker.lorem.paragraph({ min: 2, max: 5 }),
+          price: Number(faker.commerce.price()),
+          image: faker.image.urlLoremFlickr({ category: "nature" }),
+          city: faker.location.city(),
+          country: faker.location.country(),
+          address: faker.location.streetAddress(),
+        },
+      })
+    );
+  }
   // // const reviewsPromises = [];
   // for (let i = 0; i < 40; i++) {
   //   const indexTour = randomInt(tourProamises.length);

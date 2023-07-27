@@ -3,13 +3,17 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import { useSession } from "next-auth/react";
 import SignOutButton from "@/components/auth/SignOutButton";
 import ProfileMenu from "@/components/ui/ProfileMenu";
+import { useSession } from "next-auth/react";
+import AuthModal from "../components/auth/authModal";
+import ButtonNew from "@/components/ui/button";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
-  const { data } = useSession();
+  const [opened, setOpened] = useState(false);
+  const { data: session } = useSession();
+  const data = session?.session ?? session;
 
   return (
     <header>
@@ -79,25 +83,16 @@ const Header = () => {
             {data ? (
               <div className="">
                 <div className="py-2 my-1 text-center flex w-14 h-12 ">
-                  <Image
-                    src={data.user?.image ?? ""}
-                    height={30}
-                    width={30}
-                    alt={data.user?.name ?? ""}
-                    className="rounded-full border-1 border-black shadow"
-                  />{" "}
-                  <SignOutButton />
+                  <ProfileMenu image={data.user?.image} />
                 </div>
               </div>
             ) : (
               <div className="">
                 <div className="py-2 my-1">
-                  <Link
-                    className="bg-sky-400 rounded-2xl px-4 py-2"
-                    href={"/auth/login"}
-                  >
-                    Se Connecter
-                  </Link>
+                  <button onClick={() => setOpened(true)}>
+                    S&apos;authenfier
+                  </button>
+                  <AuthModal opened={opened} setOpened={setOpened} />
                 </div>
               </div>
             )}
@@ -121,20 +116,14 @@ const Header = () => {
           <div className="">
             {data ? (
               <div className="my-1 text-center flex justify-center items-center ">
-                <ProfileMenu />
-                {data.user?.email}
+                <ProfileMenu image={data.user?.image} />
               </div>
             ) : (
               <>
-                <Link className="font-semibold p-4" href={"/auth/login"}>
-                  Se Connecter
-                </Link>
-                <Link
-                  className="bg-sky-400 rounded-2xl px-4 py-2 mx-2"
-                  href={"/auth/register"}
-                >
-                  S&apos;inscrire
-                </Link>
+                <button onClick={() => setOpened(true)}>
+                  S&apos;authenfier
+                </button>
+                <AuthModal opened={opened} setOpened={setOpened} />
               </>
             )}
           </div>

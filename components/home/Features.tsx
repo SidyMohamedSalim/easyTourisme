@@ -4,7 +4,6 @@ import { Besttours, allTours } from "../../src/db/tours";
 
 const Features = async () => {
   const tours = await Besttours();
-  console.log(tours);
 
   return (
     <section className="relative my-28">

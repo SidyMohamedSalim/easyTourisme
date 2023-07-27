@@ -3,13 +3,12 @@ import React from "react";
 import { signOut, useSession } from "next-auth/react";
 import { Avatar, Menu } from "@mantine/core";
 
-const ProfileMenu = () => {
-  const user = useSession();
+const ProfileMenu = ({ image }: { image?: string }) => {
   return (
     <div className="rounded-full border-2 border-black border-opacity-10 cursor-pointer">
       <Menu>
         <Menu.Target>
-          <Avatar src={user.data?.user?.image} alt="user image" radius={"xl"} />
+          <Avatar src={image} alt="user image" radius={"xl"} />
         </Menu.Target>
         <Menu.Dropdown>
           <Menu.Item>Mes favories</Menu.Item>
