@@ -2,25 +2,48 @@
 
 import TextField from "@/components/form/TextField";
 import ButtonNew from "@/components/ui/button";
+import { useForm } from "@mantine/form";
 import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
+import { Loader, PasswordInput, TextInput } from "@mantine/core";
+import { IconEyeCheck, IconEyeOff, IconLock } from "@tabler/icons-react";
+
+export const validateString = (value: string) => {
+  return value?.length < 3 || value === null ? "Au moins 3 carateres" : null;
+};
 
 export const RegisterForm = () => {
   let [loading, setLoading] = useState(false);
-  let [formValues, setFormValues] = useState({
+  const [formValues, setFormValues] = useState({
     name: "",
     email: "",
     password: "",
   });
 
-  const onSubmit = async (e: React.FormEvent) => {
-    e.preventDefault();
+  const form = useForm({
+    initialValues: {
+      name: "",
+      email: "",
+      password: "",
+    },
+
+    validate: {
+      name: (value) => validateString(value),
+      email: (value) => (/^\S+@\S+$/.test(value) ? null : "Email Incorrecte"),
+      password: (value) =>
+        value.length < 4 ? "Le mot de passe doit être superieur à 4" : null,
+    },
+  });
+
+  const { name, email, password } = form.values;
+
+  const onSubmit = async () => {
     setLoading(true);
 
     try {
       const res = await fetch("/api/register", {
         method: "POST",
-        body: JSON.stringify(formValues),
+        body: JSON.stringify({ name, email, password }),
         headers: {
           "Content-Type": "application/json",
         },
@@ -40,15 +63,46 @@ export const RegisterForm = () => {
     }
   };
 
-  const handleChange = (event: ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = event.target;
-    setFormValues({ ...formValues, [name]: value });
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    const { hasErrors } = form.validate();
+    if (!hasErrors) {
+      setFormValues({ ...formValues });
+      onSubmit();
+    }
   };
 
   return (
-    <form onSubmit={onSubmit}>
+    <form
+      onSubmit={(e) => {
+        handleSubmit(e);
+      }}
+    >
       <div className="space-y-2  ">
-        <TextField
+        <TextInput
+          radius={"md"}
+          withAsterisk
+          placeholder="Gueye"
+          label="Nom"
+          {...form.getInputProps("name", { type: "input" })}
+        />
+        <TextInput
+          radius={"md"}
+          withAsterisk
+          placeholder="gueye@gmail.com"
+          label="Email"
+          {...form.getInputProps("email")}
+        />
+        <PasswordInput
+          radius={"md"}
+          placeholder="********"
+          label="Mot de passe"
+          {...form.getInputProps("password", { type: "input" })}
+          icon={<IconLock size="1rem" />}
+          withAsterisk
+        />
+
+        {/* <TextField
           id="name"
           label="Nom"
           placeholder="John Doe"
@@ -59,9 +113,9 @@ export const RegisterForm = () => {
           name="name"
           value={formValues.name}
           onChange={handleChange}
-        />
+        /> */}
       </div>
-      <div className="space-y-2">
+      {/* <div className="space-y-2">
         <TextField
           id="email"
           label="Email"
@@ -88,7 +142,7 @@ export const RegisterForm = () => {
           value={formValues.password}
           onChange={handleChange}
         />
-      </div>
+      </div> */}
       <ButtonNew
         type="submit"
         variant="outline"

@@ -3,7 +3,6 @@ import { Search } from "lucide-react";
 import React from "react";
 import { allTours } from "../../src/db/tours";
 import BlocB from "../../components/ui/blocs/blocB";
-import BlocC from "../../components/ui/blocs/blocC";
 import BlocA from "../../components/ui/blocs/blocA";
 import FormSearch from "../../components/search/formSearch";
 

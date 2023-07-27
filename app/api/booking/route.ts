@@ -7,6 +7,10 @@ export default apiHandler({
   endpoints: {
     GET: async (req, res) => {
       const session = await getServerSession(authOptions);
+
+      if (session?.user?.email) {
+      } else {
+      }
       try {
         const bookings = await prisma.booking.findMany({
           where: {

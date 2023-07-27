@@ -4,6 +4,7 @@ import { RegisterForm } from "@/app/auth/register/RegistrerForm";
 import { Modal } from "@mantine/core";
 import LoginWithSocial from "@/components/ui/auth/LoginButtonSocail";
 import { Dispatch, SetStateAction } from "react";
+import { useForm } from "@mantine/form";
 
 type authModalProps = {
   opened: boolean;

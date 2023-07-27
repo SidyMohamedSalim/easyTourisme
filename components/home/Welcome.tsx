@@ -3,6 +3,8 @@ import { Button, Input } from "@mantine/core";
 import Image from "next/image";
 import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
+import { motion } from "framer-motion";
+import CountUp from "react-countup";
 
 const Welcome = () => {
   return (
@@ -72,11 +74,41 @@ const Welcome = () => {
       />
       <div className="absolute w-full h-full top-0 left-0 bg-gray-900/30"></div>
       <div className="absolute top-0 w-full h-full flex flex-col justify-center text-2xl text-center text-white p-4">
-        <h1 className="text-5xl">
-          Découvrez les meilleurs
-          <br /> endroit à visiter au Sénégal
-        </h1>
-        <h2 className="py-4">Top 1% des meilleures destinations</h2>
+        <motion.h1
+          initial={{ y: "2rem", opacity: 0 }}
+          animate={{ y: 0, opacity: 1 }}
+          transition={{
+            duration: 1,
+            type: "ease-in",
+          }}
+        >
+          <h1 className="text-5xl">
+            Découvrez les meilleurs
+            <br /> endroit à visiter au Sénégal
+          </h1>
+        </motion.h1>
+        <div className="flex items-center justify-center py-4 gap-8">
+          <div className="flex flex-col">
+            <span className="text-primary font-extrabold text-2xl">
+              <CountUp start={8800} end={9000} duration={3} /> <span>+</span>
+            </span>
+            <span className="text-base">Premium Product</span>
+          </div>
+
+          <div className="flex flex-col px-2 items-center justify-center">
+            <span className="text-primary font-extrabold text-2xl">
+              <CountUp start={1950} end={2000} duration={3} /> <span>+</span>
+            </span>
+            <span className="text-base">Happy Customer</span>
+          </div>
+
+          <div className="flex flex-col px-2 items-center justify-center">
+            <span className="text-primary font-extrabold  text-2xl">
+              <CountUp end={28} /> <span>+</span>
+            </span>
+            <span className="text-base">Awards Winning</span>
+          </div>
+        </div>
         <form
           className="flex  justify-between items-center max-w-[700px] mx-auto w-full border p-1
           rounded-md text-black bg-gray-100/90"
