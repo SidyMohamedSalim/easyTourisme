@@ -3,6 +3,7 @@ import Image from "next/image";
 import React from "react";
 import { findTourbyId } from "../../../src/db/tours";
 import FormContact from "./FormContact";
+import { Review } from "./Review";
 import { Step } from "./Step";
 
 const page = async ({ params }: { params: { tourId: string } }) => {
@@ -35,10 +36,12 @@ const page = async ({ params }: { params: { tourId: string } }) => {
               </h1>
               <p className="text-md font-extralight">{tour.description}</p>
 
-              <Step title="" activities={[]}></Step>
-              <Step title="" activities={[]}></Step>
-              <Step title="" activities={[]}></Step>
-              <Step title="" activities={[]}></Step>
+              <div>
+                <Step title="" activities={[]}></Step>
+                <Step title="" activities={[]}></Step>
+                <Step title="" activities={[]}></Step>
+                <Step title="" activities={[]}></Step>
+              </div>
             </div>
             {/* rigth content */}
             <div>
@@ -55,6 +58,10 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 </h1>
                 <FormContact />
               </div>
+            </div>
+            <div className="py-3 lg:col-span-2  border my-5 rounded-md w-full p-2 px-8">
+              <h1 className="font-bold text-lg">Témoignages</h1>
+              <Review />
             </div>
           </div>
         </div>

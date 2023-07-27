@@ -27,6 +27,7 @@ const News = async () => {
                 price={tour.price}
                 address={tour.address}
                 id={tour.id}
+                city={tour.city}
               />
             ))}
           </div>

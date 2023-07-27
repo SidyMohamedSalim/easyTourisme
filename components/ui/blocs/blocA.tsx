@@ -4,8 +4,9 @@ import Image from "next/image";
 import Link from "next/link";
 import React from "react";
 import { BlocType } from "./blocB";
+import Heart from "../../tours/Heart";
 
-const BlocA = ({ title, image, city, price, id }: BlocType) => {
+const BlocA = ({ title, image, city, id, address }: BlocType) => {
   return (
     <div className=" relative  my-4 mr-2 shadow-2xl rounded-sm">
       <div className="opacity-90">
@@ -18,25 +19,22 @@ const BlocA = ({ title, image, city, price, id }: BlocType) => {
         />
         <div className="text-xs flex justify-between text-center items-center px-3 pt-3">
           <div className="flex  gap-1 items-center">
-            <MapPin className="text-[0.3rem] text-sky-300" size={22} />
-            <h3>{city}</h3>
+            <MapPin className="text-[0.3rem] text-sky-300" size={23} />
+            <h3 className="text-base">
+              {city} - {address}
+            </h3>
           </div>
-          <div className="flex   gap-1 items-center">
-            <Star className="text-sky-300" size={22} />
-            <h3>{"rating"}</h3>
+          <div className="absolute z-50 top-2 right-2 gap-1 items-center">
+            <Heart colorDefault="white" />
           </div>
         </div>
         <div className="p-3">
-          <h1 className=" w-full  font-semibold bg text-xl line-clamp-2">
+          <h1 className=" w-full  font-semibold bg text-base line-clamp-2">
             {title}
           </h1>
         </div>
 
         <div className="px-3 pb-2 flex justify-between items-center">
-          <h4 className="text-sm">
-            <span className="text-sky-400 text-base font-bold">${price} </span>
-            /person
-          </h4>
           <Link
             href={`/tours/${id}`}
             className="bg-sky-400 hover:bg-sky-600 px-2 py-1 text-sm text-white rounded-md"

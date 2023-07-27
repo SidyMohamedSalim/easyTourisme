@@ -8,9 +8,9 @@ export default async function Home() {
   return (
     <main>
       <Welcome />
-      <Features />
-      <Services />
       <News />
+      <Services />
+      <Features />
       <WhyMe />
     </main>
   );
