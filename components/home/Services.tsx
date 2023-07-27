@@ -52,7 +52,7 @@ const Services = () => {
 
       <div>
         <Image
-          src={"/images/gallery-01.jpg"}
+          src={"/assets/images/hero-image.png"}
           className="w-full h-full"
           alt=""
           width={400}

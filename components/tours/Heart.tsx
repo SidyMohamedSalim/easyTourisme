@@ -5,67 +5,68 @@ import { AiFillHeart } from "react-icons/ai";
 import { useQuery, QueryClient, useMutation } from "@tanstack/react-query";
 import { queryKeys } from "../../lib/query";
 import { toast } from "react-toastify";
-import { getFavByTourID, deleteFav, addFav } from "../../src/db/clientFetch";
+import {
+  getFavByTourID,
+  deleteFav,
+  addFav,
+  getAllFav,
+} from "../../src/db/clientFetch";
 
-const Heart = ({
-  colorDefault,
-  tourId,
-}: {
-  colorDefault: string;
-  tourId: string;
-}) => {
+const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
   const [heartColor, setHeartColor] = useState("white");
   const queryClient = new QueryClient();
 
-  const { data, isLoading } = useQuery({
-    queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
-    queryFn: () => getFavByTourID(tourId),
-  });
+  // const { data, isLoading } = useQuery({
+  //   queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
+  //   queryFn: () => getFavByTourID(tourId),
+  // });
 
   useEffect(() => {
-    setHeartColor(!data ? colorDefault : "#fa3e5f");
-  }, [data]);
+    setHeartColor(isFav ? "#fa3e5f" : "white");
+  }, [isFav]);
 
   const { mutate } = useMutation({
     mutationFn: () => {
-      return data ? deleteFav(tourId) : addFav(tourId);
+      return isFav ? deleteFav(tourId) : addFav(tourId);
     },
 
     onMutate: async () => {
       await queryClient.cancelQueries({
-        queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
+        queryKey: queryKeys.all(queryKeys.favoritesName),
       });
 
       const previousValue = queryClient.getQueriesData(
-        queryKeys.byId(queryKeys.favoritesName, tourId)
+        queryKeys.all(queryKeys.favoritesName)
       );
 
       queryClient.setQueryData(
-        queryKeys.byId(queryKeys.favoritesName, tourId),
-        getFavByTourID(tourId)
+        queryKeys.all(queryKeys.favoritesName),
+        getAllFav()
       );
+      setHeartColor("#fa3e5f");
 
       return { previousValue };
     },
     onSuccess: () => {
-      toast.success("Ajouté aux favories");
+      toast.success("Ajouté aux");
     },
     onError: (err, variables, context) => {
+      setHeartColor("white");
       queryClient.setQueriesData(
-        queryKeys.byId(queryKeys.favoritesName, tourId),
+        queryKeys.all(queryKeys.favoritesName),
         context?.previousValue
       );
     },
     onSettled: () => {
       void queryClient.invalidateQueries({
-        queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
+        queryKey: queryKeys.all(queryKeys.favoritesName),
       });
     },
   });
 
   const handleLike = () => {
+    setHeartColor(!isFav ? "white" : "#fa3e5f");
     mutate();
-    setHeartColor(!data ? colorDefault : "#fa3e5f");
   };
   return (
     <div className="cursor-pointer">

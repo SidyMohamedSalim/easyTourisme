@@ -4,8 +4,24 @@ import Link from "next/link";
 import React from "react";
 import { BlocType } from "./blocB";
 import Heart from "../../tours/Heart";
+import { prisma } from "../../../src/db/prisma";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../lib/auth";
 
-const BlocA = ({ title, image, city, id, address }: BlocType) => {
+const BlocA = async ({ title, image, city, id, address }: BlocType) => {
+  const session = await getServerSession(authOptions);
+
+  const fav = await prisma.favoritesTours.findUnique({
+    where: {
+      TourId_userEmail: {
+        userEmail: session?.user?.email ?? "",
+        TourId: id,
+      },
+    },
+  });
+
+  const isFav = fav ? true : false;
+
   return (
     <div className=" relative  my-4 mr-2 shadow-2xl rounded-sm">
       <div className="opacity-90">
@@ -24,7 +40,7 @@ const BlocA = ({ title, image, city, id, address }: BlocType) => {
             </h3>
           </div>
           <div className="absolute z-50 top-2 right-2 gap-1 items-center">
-            <Heart colorDefault="white" tourId={id} />
+            <Heart isFav={isFav} tourId={id} />
           </div>
         </div>
         <div className="p-3">

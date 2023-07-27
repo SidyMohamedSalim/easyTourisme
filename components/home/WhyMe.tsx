@@ -19,7 +19,7 @@ const WhyMe = () => {
           <div className="grid grid-cols-4 grid-rows-4  gap-4 md:gap-2">
             <div className=" row-span-2 col-span-4 md:col-span-2 md:row-span-4 ">
               <Image
-                src={"/tour-images/tour-img01.jpg"}
+                src={"/assets/images/Dakar.jpg"}
                 alt=""
                 width={8000}
                 height={9000}
@@ -28,7 +28,7 @@ const WhyMe = () => {
             </div>
             <div className=" row-span-1 col-span-2 md:col-span-1 md:row-span-2">
               <Image
-                src={"/tour-images/tour-img05.jpg"}
+                src={"/assets/images/Dakar.jpg"}
                 alt=""
                 width={8000}
                 height={9000}
@@ -57,7 +57,7 @@ const WhyMe = () => {
             </div>
             <div className=" row-span-1 col-span-2 md:col-span-1 md:row-span-2">
               <Image
-                src={"/tour-images/tour-img02.jpg"}
+                src={"/assets/images/Dakar.jpg"}
                 alt=""
                 width={8000}
                 height={9000}
