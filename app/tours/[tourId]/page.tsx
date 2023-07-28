@@ -8,6 +8,7 @@ import { prisma } from "../../../src/db/prisma";
 import { Reviews } from "./Review";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
+import Heart from "@/components/tours/Heart";
 
 const page = async ({ params }: { params: { tourId: string } }) => {
   const tour = await findTourbyId(params.tourId);
@@ -43,6 +44,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
         alt=""
         className="w-full self-center min-h-[35rem] max-h-[40rem]  object-cover "
       />
+
       <div className="mx-4">
         <div className="max-w-6xl my-10 py-3  max-sm:px-2 mx-auto flex justify-center items-center max-xl:px-10 border-2">
           <div className="grid lg:grid-cols-2 px-2 lg:gap-3">
@@ -69,6 +71,7 @@ const page = async ({ params }: { params: { tourId: string } }) => {
                 alt=""
                 className="w-full self-center max-h-[20rem] mb-4 "
               />
+
               <div>
                 <h1 className="font-bold text-xl py-3">
                   Envie de Faire Un tour ?

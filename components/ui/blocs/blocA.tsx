@@ -52,10 +52,14 @@ const BlocA = async ({ title, image, city, id, address }: BlocType) => {
         <div className="px-3 pb-2 flex justify-between items-center">
           <Link
             href={`/tours/${id}`}
-            className="bg-sky-400 hover:bg-sky-600 px-2 py-1 text-sm text-white rounded-md"
+            className="bg-sky-400 hover:bg-sky-600 px-2 py-1 text-lg text-white rounded-md"
           >
             Voir plus
           </Link>
+          <div className=" z-50 text-xl flex items-center justify-center  bg-black bg-opacity-50 rounded-md px-1">
+            <Star color="orange" fill="orange" />
+            <h1 className="text-white">2.4</h1>
+          </div>
         </div>
       </div>
     </div>

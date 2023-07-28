@@ -38,7 +38,7 @@ const FormContact = ({ tourId }: { tourId: string }) => {
   const { mutate, isLoading } = useMutation({
     mutationKey: queryKeys.byId(queryKeys.BookingName, tourId),
     mutationFn: () =>
-      book ? removeBooking(tourId) : bookVsit({ ...data, tourId }),
+      book?.id ? removeBooking(tourId) : bookVsit({ ...data, tourId }),
     onError: () => {
       toast.error("Une erreur est survenue. Veuillez Ressayer");
     },

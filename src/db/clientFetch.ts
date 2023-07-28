@@ -1,6 +1,7 @@
 import { client } from "../server/client";
 import { BookVisitScheme } from "../Scheme/ZodSheme";
 import { bookVsitType } from "../Scheme/Types/zodType";
+import { Booking } from "@prisma/client";
 
 export const getAllBooking = async (tourId: string) => {
   return await client(`/api/booking`, {
@@ -21,7 +22,7 @@ export const bookVsit = async ({
     method: "POST",
   });
 };
-export const getBookingByTourId = async (tourId: string) => {
+export const getBookingByTourId = async (tourId: string): Booking => {
   return await client(`/api/booking/${tourId}`, {
     method: "GET",
   });

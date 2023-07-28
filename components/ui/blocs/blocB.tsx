@@ -5,6 +5,7 @@ import { prisma } from "../../../src/db/prisma";
 import Heart from "../../tours/Heart";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
+import { Star } from "lucide-react";
 
 export type BlocType = {
   title: string;
@@ -19,21 +20,12 @@ export type BlocType = {
 const BlocB = async ({ image, city, id }: BlocType) => {
   const session = await getServerSession(authOptions);
 
-  const fav = await prisma.favoritesTours.findUnique({
-    where: {
-      TourId_userEmail: {
-        userEmail: session?.user?.email ?? "",
-        TourId: id,
-      },
-    },
-  });
-
-  const isFav = fav ? true : false;
   return (
     <div>
       <Link href={`/tours/${id}/`} className="relative ">
-        <div className="absolute top-2 right-2 z-50 text-xl flex items-center justify-center  ">
-          {session?.user?.email && <Heart isFav={isFav} tourId={id} />}
+        <div className="absolute top-2 right-2 z-50 text-xl flex items-center justify-center  bg-black bg-opacity-50 rounded-md px-1">
+          <Star color="orange" fill="orange" />
+          <h1 className="text-white">2.4</h1>
         </div>
         {/* images */}
         <h1 className="absolute bottom-2 left-2 font-extrabold text-xl flex items-center justify-center text-white px-2  rounded-full ">

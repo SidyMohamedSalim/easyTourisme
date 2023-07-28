@@ -14,50 +14,56 @@ export async function POST(req: Request, { params }: paramsType) {
   const session = await getServerSession(authOptions);
   const data = await req.json();
 
-  try {
-    const tourId = params.tourId;
-    const body = BookVisitScheme.parse(data);
+  if (session?.user?.email) {
+    try {
+      const tourId = params.tourId;
+      const body = BookVisitScheme.parse(data);
 
-    const user = await prisma.user.findUnique({
-      where: {
-        email: session?.user?.email,
-      },
-    });
-
-    const bookExist = await prisma.booking.findUnique({
-      where: {
-        email_TourId: {
-          email: session?.user?.email ?? "",
-          TourId: tourId,
+      const user = await prisma.user.findUnique({
+        where: {
+          email: session?.user?.email,
         },
-      },
-    });
+      });
 
-    if (bookExist) {
-      return new Response(
-        JSON.stringify({ message: "Destination deja Reservée" }),
-        {
-          status: 200,
+      if (user) {
+        const bookExist = await prisma.booking.findUnique({
+          where: {
+            email_TourId: {
+              email: session?.user?.email,
+              TourId: tourId,
+            },
+          },
+        });
+
+        if (bookExist) {
+          return new Response(
+            JSON.stringify({ message: "Destination deja Reservée" }),
+            {
+              status: 200,
+            }
+          );
         }
-      );
-    }
 
-    const booking = await prisma.booking.create({
-      data: {
-        ...body,
-        TourId: tourId,
-        email: user.email ?? "",
-        UserEmail: body.email,
-      },
-    });
-    return new Response(
-      JSON.stringify({ message: "Destination deja Reservée", booking }),
-      {
-        status: 200,
+        const booking = await prisma.booking.create({
+          data: {
+            ...body,
+            TourId: tourId,
+            email: user.email,
+            UserEmail: body.email,
+          },
+        });
+        return new Response(
+          JSON.stringify({ message: "Destination deja Reservée", booking }),
+          {
+            status: 200,
+          }
+        );
       }
-    );
-  } catch (err: any) {
-    throw new Error(err.message);
+    } catch (err: any) {
+      throw new Error(err.message);
+    }
+  } else {
+    JSON.stringify({ message: "Vous devez vous connecté" });
   }
 }
 
