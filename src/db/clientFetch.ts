@@ -10,14 +10,13 @@ export const getAllBooking = async (tourId: string) => {
 };
 
 export const bookVsit = async ({
-  date,
   email,
-  message,
+  name,
   phone,
   tourId,
 }: bookVsitType & { tourId: string }) => {
   return await client(`/api/booking/${tourId}`, {
-    data: { date, email, message, phone },
+    data: { email, name, phone },
     zodSchema: BookVisitScheme,
     method: "POST",
   });
@@ -86,5 +85,22 @@ export const deleteReview = async (tourId: string, ReviewId: string) => {
   return await client(`/api/review/${tourId}`, {
     method: "DELETE",
     data: { ReviewId },
+  });
+};
+
+export const sendContact = async (
+  tourId: string,
+  date: string,
+  email: string,
+  message: string,
+  phone: string
+) => {
+  return await client(`/api/booking/${tourId}/contact`, {
+    method: "POST",
+    data: { message, date, email, phone },
+    // headers: {
+    //   "Content-Type": "application/json",
+    //   Accept: "application/json",
+    // },
   });
 };

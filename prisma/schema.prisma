@@ -58,7 +58,7 @@ model Options {
 
 model Booking {
   id        String  @default(cuid())
-  date      String
+  name      String?
   email     String
   message   String?
   UserEmail String?
@@ -79,12 +79,11 @@ model Tour {
   id          String @id @default(cuid())
   title       String
   description String
-  price       Int
   address     String
   city        String
   country     String
-
-  image String
+  price       Float?
+  image       String
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt

@@ -4,6 +4,8 @@ import { prisma } from "../../../../src/db/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { BookVisitScheme } from "@/src/Scheme/ZodSheme";
+import { mailOptions, transporter } from "@/src/db/nodemailer";
+import { generateEmailContent } from "@/lib/GetContactMessage";
 const queryScheme = z.object({
   tourId: z.string(),
 });
@@ -14,56 +16,46 @@ export async function POST(req: Request, { params }: paramsType) {
   const session = await getServerSession(authOptions);
   const data = await req.json();
 
-  if (session?.user?.email) {
-    try {
-      const tourId = params.tourId;
-      const body = BookVisitScheme.parse(data);
+  try {
+    const tourId = params.tourId;
+    const body = BookVisitScheme.parse(data);
 
-      const user = await prisma.user.findUnique({
-        where: {
-          email: session?.user?.email,
-        },
-      });
+    const tour = await prisma.tour.findUnique({
+      where: {
+        id: tourId,
+      },
+    });
 
-      if (user) {
-        const bookExist = await prisma.booking.findUnique({
-          where: {
-            email_TourId: {
-              email: session?.user?.email,
-              TourId: tourId,
-            },
-          },
-        });
+    const link = `http://localhost:3000/tours/${tourId}`;
 
-        if (bookExist) {
-          return new Response(
-            JSON.stringify({ message: "Destination deja Reservée" }),
-            {
-              status: 200,
-            }
-          );
-        }
+    await transporter.sendMail({
+      ...mailOptions(body.email),
+      ...generateEmailContent({
+        ...body,
+        message: `<p>Vous avez recu une demande de contact concernant  la destination avec le titre :</p>
+        <a href='${link}' >${tour?.title}</a>`,
+      }),
+      subject: `Senegal Premium Tour`,
+    });
 
-        const booking = await prisma.booking.create({
-          data: {
-            ...body,
-            TourId: tourId,
-            email: user.email,
-            UserEmail: body.email,
-          },
-        });
-        return new Response(
-          JSON.stringify({ message: "Destination deja Reservée", booking }),
-          {
-            status: 200,
-          }
-        );
-      }
-    } catch (err: any) {
-      throw new Error(err.message);
-    }
-  } else {
-    JSON.stringify({ message: "Vous devez vous connecté" });
+    const user = await prisma.user.findUnique({
+      where: {
+        email: session?.user?.email ?? "",
+      },
+    });
+
+    await prisma.booking.create({
+      data: {
+        ...body,
+        TourId: tourId,
+      },
+    });
+
+    return new Response(JSON.stringify({ message: "Destination Reservée" }), {
+      status: 200,
+    });
+  } catch (err: any) {
+    throw new Error(err.message);
   }
 }
 

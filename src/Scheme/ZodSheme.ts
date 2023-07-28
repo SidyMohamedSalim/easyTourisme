@@ -16,8 +16,7 @@ export const userScheme = z.object({
 });
 
 export const BookVisitScheme = z.object({
-  date: z.string(),
+  name: z.string(),
   email: z.string().email(),
-  message: z.string(),
   phone: z.string(),
 });
