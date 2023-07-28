@@ -7,13 +7,19 @@ import { signIn } from "next-auth/react";
 import { ChangeEvent, useState } from "react";
 import { Loader, PasswordInput, TextInput } from "@mantine/core";
 import { IconEyeCheck, IconEyeOff, IconLock } from "@tabler/icons-react";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
+import { queryKeys } from "../../../lib/query";
+import { addUser } from "../../../src/db/clientFetch";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const validateString = (value: string) => {
   return value?.length < 3 || value === null ? "Au moins 3 carateres" : null;
 };
 
 export const RegisterForm = () => {
-  let [loading, setLoading] = useState(false);
+  const router = useRouter();
+  const queryClient = useQueryClient();
   const [formValues, setFormValues] = useState({
     name: "",
     email: "",
@@ -37,38 +43,30 @@ export const RegisterForm = () => {
 
   const { name, email, password } = form.values;
 
-  const onSubmit = async () => {
-    setLoading(true);
-
-    try {
-      const res = await fetch("/api/register", {
-        method: "POST",
-        body: JSON.stringify({ name, email, password }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-
-      setLoading(false);
-      if (!res.ok) {
-        alert((await res.json()).message);
-        return;
-      }
-
+  const { mutate, isLoading } = useMutation({
+    mutationKey: queryKeys.all(queryKeys.userName),
+    mutationFn: async () => {
+      addUser({ name, email, password });
       signIn(undefined, { callbackUrl: "/" });
-    } catch (error: any) {
-      setLoading(false);
-      console.error(error);
-      alert(error.message);
-    }
-  };
+    },
+
+    onError: () =>
+      toast.error("Impossible de s'identifier. Veuillez ressayer", {
+        duration: 5000,
+      }),
+    onSuccess: () => {
+      void queryClient.invalidateQueries(queryKeys.all(queryKeys.userName));
+      toast.success("Connexion Reussi !!", { duration: 5000 });
+      router.refresh();
+    },
+  });
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     const { hasErrors } = form.validate();
     if (!hasErrors) {
       setFormValues({ ...formValues });
-      onSubmit();
+      mutate();
     }
   };
 
@@ -149,9 +147,9 @@ export const RegisterForm = () => {
         color="gray"
         className="mt-3 w-full"
         href={""}
-        disabled={loading}
+        disabled={isLoading}
       >
-        {loading ? "en cours..." : "Continue avec email"}
+        {isLoading ? "en cours..." : "Continue avec email"}
       </ButtonNew>
     </form>
   );

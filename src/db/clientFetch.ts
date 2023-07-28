@@ -2,6 +2,7 @@ import { client } from "../server/client";
 import { BookVisitScheme } from "../Scheme/ZodSheme";
 import { bookVsitType } from "../Scheme/Types/zodType";
 import { Booking } from "@prisma/client";
+import { signIn } from "next-auth/react";
 
 export const getAllBooking = async (tourId: string) => {
   return await client(`/api/booking`, {
@@ -102,5 +103,20 @@ export const sendContact = async (
     //   "Content-Type": "application/json",
     //   Accept: "application/json",
     // },
+  });
+};
+
+export const addUser = async ({
+  name,
+  email,
+  password,
+}: {
+  name: string;
+  email: string;
+  password: string;
+}) => {
+  await client("/api/register", {
+    method: "POST",
+    data: { name, email, password },
   });
 };
