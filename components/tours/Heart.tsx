@@ -45,7 +45,7 @@ const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
         queryKeys.all(queryKeys.favoritesName),
         getAllFav()
       );
-      setHeartColor("#fa3e5f");
+      setHeartColor(isFav ? "white" : "#fa3e5f");
 
       return { previousValue };
     },
