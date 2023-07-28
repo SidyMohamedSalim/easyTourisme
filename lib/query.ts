@@ -4,4 +4,5 @@ export const queryKeys = {
   favoritesName: "favorites",
   BookingName: "bookings",
   ToursName: "tours",
+  reviewsName: "reviews",
 };

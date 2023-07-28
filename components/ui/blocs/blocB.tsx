@@ -33,7 +33,7 @@ const BlocB = async ({ image, city, id }: BlocType) => {
     <div>
       <Link href={`/tours/${id}/`} className="relative ">
         <div className="absolute top-2 right-2 z-50 text-xl flex items-center justify-center  ">
-          <Heart isFav={isFav} tourId={id} />
+          {session?.user?.email && <Heart isFav={isFav} tourId={id} />}
         </div>
         {/* images */}
         <h1 className="absolute bottom-2 left-2 font-extrabold text-xl flex items-center justify-center text-white px-2  rounded-full ">

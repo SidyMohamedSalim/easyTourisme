@@ -56,3 +56,34 @@ export const deleteFav = async (tourId: string) => {
     method: "DELETE",
   });
 };
+
+export const getAllReviews = async (tourId: string) => {
+  return await client(`/api/review`, {
+    method: "GET",
+    data: { tourId },
+  });
+};
+
+export const getReviewID = async (tourId: string) => {
+  return await client(`/api/review/${tourId}`, {
+    method: "GET",
+  });
+};
+
+export const addReview = async (
+  tourId: string,
+  message: string,
+  valueRating: number
+) => {
+  return await client(`/api/review/${tourId}`, {
+    method: "POST",
+    data: { message, rating: valueRating },
+  });
+};
+
+export const deleteReview = async (tourId: string, ReviewId: string) => {
+  return await client(`/api/review/${tourId}`, {
+    method: "DELETE",
+    data: { ReviewId },
+  });
+};

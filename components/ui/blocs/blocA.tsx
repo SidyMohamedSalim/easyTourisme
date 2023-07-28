@@ -40,7 +40,7 @@ const BlocA = async ({ title, image, city, id, address }: BlocType) => {
             </h3>
           </div>
           <div className="absolute z-50 top-2 right-2 gap-1 items-center">
-            <Heart isFav={isFav} tourId={id} />
+            {session?.user?.email && <Heart isFav={isFav} tourId={id} />}
           </div>
         </div>
         <div className="p-3">

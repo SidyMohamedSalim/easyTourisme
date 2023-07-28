@@ -3,11 +3,15 @@ import Image from "next/image";
 import React from "react";
 import { findTourbyId } from "../../../src/db/tours";
 import FormContact from "./FormContact";
-import { Review } from "./Review";
 import { Step } from "./Step";
+import { prisma } from "../../../src/db/prisma";
+import { Reviews } from "./Review";
+import { getServerSession } from "next-auth";
+import { authOptions } from "../../../lib/auth";
 
 const page = async ({ params }: { params: { tourId: string } }) => {
   const tour = await findTourbyId(params.tourId);
+  const session = await getServerSession(authOptions);
 
   if (!tour) {
     return (
@@ -16,6 +20,19 @@ const page = async ({ params }: { params: { tourId: string } }) => {
       </div>
     );
   }
+  const reviews = await prisma.review.findMany({
+    where: {
+      tourId: tour.id,
+    },
+    select: {
+      id: true,
+      userEmail: true,
+      message: true,
+      user: true,
+      rating: true,
+    },
+  });
+  console.log(reviews);
 
   return (
     <div className="relative">
@@ -61,7 +78,11 @@ const page = async ({ params }: { params: { tourId: string } }) => {
             </div>
             <div className="py-3 lg:col-span-2  border my-5 rounded-md w-full p-2 px-8">
               <h1 className="font-bold text-lg">Témoignages</h1>
-              <Review />
+              <Reviews
+                tourId={tour.id}
+                Reviews={reviews}
+                userSessionEmail={session?.user?.email ?? undefined}
+              />
             </div>
           </div>
         </div>
