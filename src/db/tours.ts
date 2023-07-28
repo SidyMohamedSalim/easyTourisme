@@ -5,7 +5,7 @@ export const allTours = async () => await prisma.tour.findMany();
 export const Besttours = async () =>
   await prisma.tour.findMany({
     orderBy: {
-      createdAt: "desc",
+      title: "desc",
     },
     take: 6,
   });

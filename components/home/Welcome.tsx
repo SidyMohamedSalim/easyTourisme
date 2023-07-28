@@ -81,11 +81,10 @@ const Welcome = () => {
             duration: 1,
             type: "ease-in",
           }}
+          className="text-5xl"
         >
-          <h1 className="text-5xl">
-            Découvrez les meilleurs
-            <br /> endroit à visiter au Sénégal
-          </h1>
+          Découvrez les meilleurs
+          <br /> endroit à visiter au Sénégal
         </motion.h1>
         <div className="flex items-center justify-center py-4 gap-8">
           <div className="flex flex-col">
