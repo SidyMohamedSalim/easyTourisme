@@ -4,15 +4,17 @@ import { useState } from "react";
 import { AiFillHeart } from "react-icons/ai";
 import { useQuery, QueryClient, useMutation } from "@tanstack/react-query";
 import { queryKeys } from "../../lib/query";
-import { toast } from "react-toastify";
 import {
   getFavByTourID,
   deleteFav,
   addFav,
   getAllFav,
 } from "../../src/db/clientFetch";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
+  const router = useRouter();
   const [heartColor, setHeartColor] = useState("white");
   const queryClient = new QueryClient();
 
@@ -48,7 +50,7 @@ const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
       return { previousValue };
     },
     onSuccess: () => {
-      toast.success("Ajouté aux");
+      toast.success(isFav ? "Retiré" : "Ajouté");
     },
     onError: (err, variables, context) => {
       setHeartColor("white");
@@ -61,6 +63,7 @@ const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
       void queryClient.invalidateQueries({
         queryKey: queryKeys.all(queryKeys.favoritesName),
       });
+      router.refresh();
     },
   });
 

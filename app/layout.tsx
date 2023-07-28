@@ -2,10 +2,11 @@ import Footer from "@/components/footer/Footer";
 import { getServerSession } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
+import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import Header from "./header";
 import Providers from "./providers";
-import { authOptions } from "../lib/auth";
+import { Toaster } from "react-hot-toast";
 
 export const metadata = {
   title: "Create Next App",
@@ -20,6 +21,7 @@ export default async function RootLayout({ children }: PropsWithChildren) {
           <Header />
           {children}
           <Footer />
+          <Toaster position="top-center" gutter={10} />
         </Providers>
       </body>
     </html>

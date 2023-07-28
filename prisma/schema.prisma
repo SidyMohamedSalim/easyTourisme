@@ -57,7 +57,7 @@ model Options {
 }
 
 model Booking {
-  id        String  @default(cuid())
+  id        String  @id @default(cuid())
   name      String?
   email     String
   message   String?
@@ -70,9 +70,6 @@ model Booking {
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
-
-  @@id([email, TourId])
-  @@index([email, TourId])
 }
 
 model Tour {
@@ -94,8 +91,6 @@ model Tour {
   options Options[] @relation(name: "tourOption")
 
   Reviews Review[]
-
-  @@unique(fields: [address, city, country])
 }
 
 model Review {

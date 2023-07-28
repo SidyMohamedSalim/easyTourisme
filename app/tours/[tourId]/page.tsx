@@ -32,6 +32,9 @@ const page = async ({ params }: { params: { tourId: string } }) => {
       user: true,
       rating: true,
     },
+    orderBy: {
+      createdAt: "desc",
+    },
   });
   console.log(reviews);
 

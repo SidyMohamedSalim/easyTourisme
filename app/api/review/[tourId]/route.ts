@@ -30,12 +30,24 @@ export async function POST(req: Request, { params }: paramsType) {
     const { tourId } = params;
     const body = bodyPostScheme.parse(data);
     if (sesssion?.user?.email) {
+      const user = await prisma.user.findFirst({
+        where: {
+          email: sesssion.user.email,
+        },
+      });
+      console.log(user);
+
+      if (!user) {
+        return new Response(
+          JSON.stringify({ message: "vous devez vous connecté" })
+        );
+      }
       const review = await prisma.review.create({
         data: {
           message: body.message,
           rating: body.rating,
           tourId: tourId,
-          userEmail: sesssion?.user?.email,
+          userEmail: user?.email,
         },
       });
       return new Response(JSON.stringify({ review }), {

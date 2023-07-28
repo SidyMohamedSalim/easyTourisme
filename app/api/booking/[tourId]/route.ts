@@ -26,23 +26,17 @@ export async function POST(req: Request, { params }: paramsType) {
       },
     });
 
-    const link = `http://localhost:3000/tours/${tourId}`;
+    // const link = `http://localhost:3000/tours/${tourId}`;
 
-    await transporter.sendMail({
-      ...mailOptions(body.email),
-      ...generateEmailContent({
-        ...body,
-        message: `<p>Vous avez recu une demande de contact concernant  la destination avec le titre :</p>
-        <a href='${link}' >${tour?.title}</a>`,
-      }),
-      subject: `Senegal Premium Tour`,
-    });
-
-    const user = await prisma.user.findUnique({
-      where: {
-        email: session?.user?.email ?? "",
-      },
-    });
+    // await transporter.sendMail({
+    //   ...mailOptions(body.email),
+    //   ...generateEmailContent({
+    //     ...body,
+    //     message: `<p>Vous avez recu une demande de contact concernant  la destination avec le titre :</p>
+    //     <a href='${link}' >${tour?.title}</a>`,
+    //   }),
+    //   subject: `Senegal Premium Tour`,
+    // });
 
     await prisma.booking.create({
       data: {

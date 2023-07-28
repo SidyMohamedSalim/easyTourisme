@@ -4,17 +4,25 @@ import { Loader, NumberInput, Textarea, TextInput } from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { Mail, PhoneCall, User } from "lucide-react";
 import { useForm } from "@mantine/form";
-import { useMutation, useQuery, QueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  useQuery,
+  QueryClient,
+  useQueryClient,
+} from "@tanstack/react-query";
 import {
   bookVsit,
   getBookingByTourId,
   removeBooking,
 } from "../../../src/db/clientFetch";
-import { toast } from "react-toastify";
 import { queryKeys } from "../../../lib/query";
 import { sendContact } from "../../../src/db/clientFetch";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 const FormContact = ({ tourId }: { tourId: string }) => {
+  const queryCLient = useQueryClient();
+  const router = useRouter();
   const form = useForm({
     initialValues: {
       name: "",
@@ -30,8 +38,24 @@ const FormContact = ({ tourId }: { tourId: string }) => {
 
   const { mutate, isLoading } = useMutation({
     mutationFn: () => bookVsit({ email, name, phone, tourId }),
+    onError: () => toast.error("Il y'a eu une erreur", { duration: 10000 }),
+    onSuccess: () => {
+      toast.success(
+        "Prise de contact Reussi !!.\n\nNous allons vous appelez le plus tôt que possible.",
+        {
+          duration: 10000,
+        }
+      );
+      void queryCLient.invalidateQueries({
+        queryKey: queryKeys.all(queryKeys.reviewsName),
+      });
+      form.reset();
+      router.refresh();
+    },
     onSettled: () => {
-      toast.success("success");
+      void queryCLient.invalidateQueries({
+        queryKey: queryKeys.all(queryKeys.reviewsName),
+      });
     },
   });
 

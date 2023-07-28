@@ -4,14 +4,19 @@ import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
 
-const queryClient = new QueryClient();
+const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      retry: 1,
+      refetchOnWindowFocus: false,
+    },
+  },
+});
 
 export default function Providers({ children }: PropsWithChildren) {
   return (
-    <SessionProvider>
-      <QueryClientProvider client={queryClient}>
-        {children}{" "}
-      </QueryClientProvider>
-    </SessionProvider>
+    <QueryClientProvider client={queryClient}>
+      <SessionProvider>{children} </SessionProvider>
+    </QueryClientProvider>
   );
 }

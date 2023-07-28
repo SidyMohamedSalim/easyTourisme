@@ -2,21 +2,27 @@
 import { Avatar, Button, Textarea, Loader, StarIcon } from "@mantine/core";
 import React from "react";
 import { useForm } from "@mantine/form";
-import { useMutation, QueryClient } from "@tanstack/react-query";
+import {
+  useMutation,
+  QueryClient,
+  useQueryClient,
+} from "@tanstack/react-query";
 import { queryKeys } from "../../../lib/query";
 import { addReview } from "../../../src/db/clientFetch";
-import { toast } from "react-toastify";
 import { useState } from "react";
 import AuthModal from "@/components/auth/authModal";
 import { ReviewProps } from "@/src/types/tour";
 import { ReviewWithUser } from "../../../src/types/tour";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
+import { toast } from "react-hot-toast";
+import { useRouter } from "next/navigation";
 
 export const Reviews = ({ tourId, Reviews, userSessionEmail }: ReviewProps) => {
   const [valueRating, setValueRating] = useState(0);
+  const router = useRouter();
 
-  const queryCLient = new QueryClient();
+  const queryCLient = useQueryClient();
   const [isOpen, setIsOpen] = useState(false);
   const form = useForm({
     initialValues: {
@@ -31,12 +37,20 @@ export const Reviews = ({ tourId, Reviews, userSessionEmail }: ReviewProps) => {
   const { mutate, isLoading } = useMutation({
     mutationKey: queryKeys.byId(queryKeys.reviewsName, tourId),
     mutationFn: (message: string) => addReview(tourId, message, valueRating),
-    onError: () => toast.error("Il y'a eu une erreur"),
+    onError: () => toast.error("Il y'a eu une erreur", { duration: 10000 }),
     onSuccess: () => {
-      toast.success("Commentaire  Reussi");
+      toast.success("Commentaire  Envoyé", { duration: 10000 });
+      void queryCLient.invalidateQueries({
+        queryKey: queryKeys.all(queryKeys.reviewsName),
+      });
+      form.reset();
+      setValueRating(0);
+      router.refresh();
     },
     onSettled: () => {
-      queryCLient.invalidateQueries(queryKeys.all(queryKeys.reviewsName));
+      void queryCLient.invalidateQueries({
+        queryKey: queryKeys.all(queryKeys.reviewsName),
+      });
     },
   });
 
@@ -52,7 +66,13 @@ export const Reviews = ({ tourId, Reviews, userSessionEmail }: ReviewProps) => {
   return (
     <div className="w-full">
       {userSessionEmail ? (
-        <form action="" onSubmit={(e) => handlerSubmit(e)} className=" my-10">
+        <form
+          action=""
+          onSubmit={(e) => {
+            handlerSubmit(e);
+          }}
+          className=" my-10"
+        >
           <HalfRating value={valueRating} setValue={setValueRating} />
           <Textarea
             placeholder="Laissez un avis"
