@@ -9,7 +9,7 @@ import LoginWithSocial from "@/components/ui/auth/LoginButtonSocail";
 import { useRouter } from "next/navigation";
 import { signIn, useSession } from "next-auth/react";
 import { useState, ChangeEvent } from "react";
-import { toast } from "react-toastify";
+import { toast } from "react-hot-toast";
 
 const page = async () => {
   const router = useRouter();
