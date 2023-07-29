@@ -1,5 +1,5 @@
-import LoaderContainer from "@/components/ui/LoaderIcons";
 import React from "react";
+import LoaderContainer from "../../components/ui/LoaderIcons";
 const loading = () => {
   return (
     <div>
