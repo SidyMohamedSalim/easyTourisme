@@ -1,17 +1,16 @@
 "use client";
 
-import TextField from "@/components/form/TextField";
-import ButtonNew from "@/components/ui/button";
 import { useForm } from "@mantine/form";
 import { signIn } from "next-auth/react";
-import { ChangeEvent, useState } from "react";
-import { Loader, PasswordInput, TextInput } from "@mantine/core";
-import { IconEyeCheck, IconEyeOff, IconLock } from "@tabler/icons-react";
+import { PasswordInput, TextInput } from "@mantine/core";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "../../../lib/query";
 import { addUser } from "../../../src/db/clientFetch";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import { useState } from "react";
+import { IconLock } from "@tabler/icons-react";
+import ButtonNew from "../../../components/ui/button";
 
 export const validateString = (value: string) => {
   return value?.length < 3 || value === null ? "Au moins 3 carateres" : null;

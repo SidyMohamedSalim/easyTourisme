@@ -2,21 +2,17 @@
 import { Avatar, Button, Textarea, Loader, StarIcon } from "@mantine/core";
 import React from "react";
 import { useForm } from "@mantine/form";
-import {
-  useMutation,
-  QueryClient,
-  useQueryClient,
-} from "@tanstack/react-query";
+import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { queryKeys } from "../../../lib/query";
 import { addReview } from "../../../src/db/clientFetch";
 import { useState } from "react";
-import AuthModal from "@/components/auth/authModal";
 import { ReviewProps } from "@/src/types/tour";
 import { ReviewWithUser } from "../../../src/types/tour";
 import Rating from "@mui/material/Rating";
 import Stack from "@mui/material/Stack";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import AuthModal from "../../../components/auth/authModal";
 
 export const Reviews = ({ tourId, Reviews, userSessionEmail }: ReviewProps) => {
   const [valueRating, setValueRating] = useState(0);

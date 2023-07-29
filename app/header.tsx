@@ -3,11 +3,9 @@ import { X } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
 import { useState } from "react";
-import SignOutButton from "@/components/auth/SignOutButton";
-import ProfileMenu from "@/components/ui/ProfileMenu";
 import { useSession } from "next-auth/react";
 import AuthModal from "../components/auth/authModal";
-import ButtonNew from "@/components/ui/button";
+import ProfileMenu from "../components/ui/ProfileMenu";
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);

@@ -1,6 +1,6 @@
 "use client";
-import { Error } from "@/components/ui/Error";
 import { useRouter } from "next/navigation";
+import { Error } from "../components/ui/Error";
 
 // Error components must be Client components
 
