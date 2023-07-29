@@ -4,7 +4,7 @@ import { prisma } from "../../../../src/db/prisma";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 
-export const queryScheme = z.object({
+const queryScheme = z.object({
   tourId: z.string(),
 });
 
@@ -17,7 +17,7 @@ export async function POST(req: Request, { params }: paramsType) {
     const isFav = await prisma.favoritesTours.findUnique({
       where: {
         TourId_userEmail: {
-          userEmail: session?.user?.email,
+          userEmail: session?.user?.email ?? "",
           TourId: tourId,
         },
       },
