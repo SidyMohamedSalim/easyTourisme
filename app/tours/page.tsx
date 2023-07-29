@@ -5,9 +5,10 @@ import { allTours } from "../../src/db/tours";
 import BlocB from "../../components/ui/blocs/blocB";
 import BlocA from "../../components/ui/blocs/blocA";
 import FormSearch from "../../components/search/formSearch";
+import { Tour } from "@prisma/client";
 
 const page = async () => {
-  const tours = await allTours();
+  const tours: Tour[] = await allTours();
   return (
     <div>
       <FormSearch />
