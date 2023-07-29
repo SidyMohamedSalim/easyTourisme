@@ -3,7 +3,7 @@ import { z } from "zod";
 import { tourScheme } from "@/src/Scheme/ZodSheme";
 import { prisma } from "../../../../src/db/prisma";
 
-export const queryScheme = z.object({
+const queryScheme = z.object({
   tourId: z.string(),
 });
 
