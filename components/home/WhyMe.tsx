@@ -9,10 +9,12 @@ const WhyMe = () => {
         <div className="mx-3">
           {/* title section */}
           <div>
-            <h1 className="font-semibold text-4xl mb-1">Nos Experiences</h1>
+            <h1 className="font-semibold text-4xl mb-1">
+              Vivez des aventures authentiques au Sénégal
+            </h1>
             <p className="text-md py-3">
-              Lorem ipsum dolor, sit amet consectetur adipisicing elit.
-              Explicabo, qui.
+              Osez l&apos;aventure au Sénégal en vous lançant dans des périples
+              uniques et authentiques.
             </p>
           </div>
           {/* content */}
@@ -38,11 +40,14 @@ const WhyMe = () => {
             <div className=" row-span-1 col-span-2  flex bg-white justify-center items-center flex-col text-center px-3 md:col-span-1 md:row-span-2">
               <Globe2 className="mb-2 mt-4" size={30} color={"sky"} />
               <h1 className="text-2xl font-medium py-2 italic">
-                Un Voyage Passionnant
+                Sénégal : Terre de diversité, destination de tous les voyageurs
+                !
               </h1>
               <p className="text-sm px-3 py-2 font-extralight">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-                soluta.
+                Notre site de tourisme vous invite à explorer les mille facettes
+                du pays, de Dakar à Saint-Louis, en passant par la Casamance.
+                Nos guides dévoués et compétents vous accompagnent, peu importe
+                votre origine.
               </p>
             </div>
             <div className=" row-span-1 col-span-2 bg-white flex justify-center items-center flex-col text-center px-3 md:col-span-1 md:row-span-2">
@@ -51,8 +56,8 @@ const WhyMe = () => {
                 Des lieux Magiques
               </h1>
               <p className="text-sm px-3 py-2 font-extralight">
-                Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor,
-                soluta.
+                Le Sénégal vous ouvre ses portes avec un accueil chaleureux et
+                sans distinctions.
               </p>
             </div>
             <div className=" row-span-1 col-span-2 md:col-span-1 md:row-span-2">

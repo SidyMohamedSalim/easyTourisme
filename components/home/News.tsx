@@ -11,7 +11,7 @@ const News = async () => {
           {/* desc section */}
           <div>
             <h1 className="font-semibold text-4xl mb-1">
-              Nos offres du moment
+              Sites incontournables
             </h1>
             <p className="text-md py-3">
               Lorem ipsum dolor sit amet consectetur adipisicing elit.
@@ -24,7 +24,6 @@ const News = async () => {
                 key={tour.id}
                 title={tour.id}
                 image={tour.image}
-                price={tour.price}
                 address={tour.address}
                 id={tour.id}
                 city={tour.city}

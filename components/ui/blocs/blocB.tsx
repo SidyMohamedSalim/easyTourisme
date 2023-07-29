@@ -10,7 +10,6 @@ import { Star } from "lucide-react";
 export type BlocType = {
   title: string;
   image: string;
-  price: number;
   address: string;
   id: string;
   city?: string;

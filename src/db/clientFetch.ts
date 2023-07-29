@@ -3,6 +3,7 @@ import { BookVisitScheme } from "../Scheme/ZodSheme";
 import { bookVsitType } from "../Scheme/Types/zodType";
 import { Booking } from "@prisma/client";
 import { signIn } from "next-auth/react";
+import { string } from "zod";
 
 export const getAllBooking = async (tourId: string) => {
   return await client(`/api/booking`, {
@@ -15,9 +16,10 @@ export const bookVsit = async ({
   name,
   phone,
   tourId,
-}: bookVsitType & { tourId: string }) => {
+  prefix,
+}: bookVsitType & { tourId: string; prefix: string }) => {
   return await client(`/api/booking/${tourId}`, {
-    data: { email, name, phone },
+    data: { email, name, phone: `${prefix} ${phone}` },
     zodSchema: BookVisitScheme,
     method: "POST",
   });

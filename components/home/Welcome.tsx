@@ -5,6 +5,7 @@ import React from "react";
 import { AiOutlineSearch } from "react-icons/ai";
 import { motion } from "framer-motion";
 import CountUp from "react-countup";
+import { Star } from "lucide-react";
 
 const Welcome = () => {
   return (
@@ -81,31 +82,36 @@ const Welcome = () => {
             duration: 1,
             type: "ease-in",
           }}
-          className="text-5xl"
+          className="text-4xl"
         >
-          Découvrez les meilleurs
-          <br /> endroit à visiter au Sénégal
+          Un voyage inoubliable, un accompagnement sans frontières
+          <br /> Bienvenue au{" "}
+          <span>
+            <span className="text-red-500">Sé</span>
+            <span className="text-yellow-200">n⭑</span>
+            <span className="text-green-300">gal !</span>
+          </span>
         </motion.h1>
-        <div className="flex items-center justify-center py-4 gap-8">
+        <div className="flex items-top justify-center py-4 gap-8">
           <div className="flex flex-col">
-            <span className="text-primary font-extrabold text-2xl">
+            <span className="text-sky-300 font-extrabold text-2xl">
               <CountUp start={8800} end={9000} duration={3} /> <span>+</span>
             </span>
-            <span className="text-base">Premium Product</span>
+            <span className="text-base">Visiteurs / an</span>
           </div>
 
           <div className="flex flex-col px-2 items-center justify-center">
-            <span className="text-primary font-extrabold text-2xl">
+            <span className="text-sky-300 font-extrabold text-2xl">
               <CountUp start={1950} end={2000} duration={3} /> <span>+</span>
             </span>
-            <span className="text-base">Happy Customer</span>
+            <span className="text-base">Sites touristiques</span>
           </div>
 
           <div className="flex flex-col px-2 items-center justify-center">
-            <span className="text-primary font-extrabold  text-2xl">
+            <span className="text-sky-300 font-extrabold  text-2xl">
               <CountUp end={28} /> <span>+</span>
             </span>
-            <span className="text-base">Awards Winning</span>
+            <span className="text-base">Cultures</span>
           </div>
         </div>
         <form

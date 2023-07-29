@@ -9,6 +9,7 @@ import { Reviews } from "./Review";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
 import Heart from "@/components/tours/Heart";
+import { Review } from "@prisma/client";
 
 const page = async ({ params }: { params: { tourId: string } }) => {
   const tour = await findTourbyId(params.tourId);

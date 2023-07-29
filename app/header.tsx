@@ -76,7 +76,7 @@ const Header = () => {
               </div>
               <div className="py-2 my-1 hover:bg-white w-full">
                 <Link href={"/about"} className="px-4 w-full">
-                  Découvrir
+                  Nous Contacter
                 </Link>
               </div>
             </nav>
@@ -109,7 +109,7 @@ const Header = () => {
               Destinations
             </Link>
             <Link href={"/about"} className="px-4">
-              Découvrir
+              Nous Contacter
             </Link>
           </nav>
 

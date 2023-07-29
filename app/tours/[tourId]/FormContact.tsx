@@ -1,6 +1,12 @@
 "use client";
 import React from "react";
-import { Loader, NumberInput, Textarea, TextInput } from "@mantine/core";
+import {
+  Loader,
+  NumberInput,
+  Select,
+  Textarea,
+  TextInput,
+} from "@mantine/core";
 import { DatePickerInput } from "@mantine/dates";
 import { Mail, PhoneCall, User } from "lucide-react";
 import { useForm } from "@mantine/form";
@@ -19,25 +25,30 @@ import { queryKeys } from "../../../lib/query";
 import { sendContact } from "../../../src/db/clientFetch";
 import { toast } from "react-hot-toast";
 import { useRouter } from "next/navigation";
+import useCountries from "../../../components/hooks/useCountries";
 
 const FormContact = ({ tourId }: { tourId: string }) => {
   const queryCLient = useQueryClient();
+  const { getAll } = useCountries();
   const router = useRouter();
   const form = useForm({
     initialValues: {
       name: "",
       email: "",
       phone: "",
+      prefix: "",
     },
     validate: {
       email: (value) => (value ? null : "Champ Requis"),
+      phone: (value, values) =>
+        value ? (values.prefix ? null : "Prefix Obligatoire") : null,
     },
   });
 
-  const { name, email, phone } = form.values;
+  const { name, email, phone, prefix } = form.values;
 
   const { mutate, isLoading } = useMutation({
-    mutationFn: () => bookVsit({ email, name, phone, tourId }),
+    mutationFn: () => bookVsit({ email, name, phone, tourId, prefix }),
     onError: () => toast.error("Il y'a eu une erreur", { duration: 10000 }),
     onSuccess: () => {
       toast.success(
@@ -89,15 +100,24 @@ const FormContact = ({ tourId }: { tourId: string }) => {
           icon={<Mail size={15} />}
           {...form.getInputProps("email", { type: "input" })}
         />
-        <div>
-          <TextInput
-            label="Votre phone"
-            placeholder="ex: +221685555555"
-            id=""
-            icon={<PhoneCall size={15} />}
-            className=" w-full focus:outline-none hover:outline-none my-3 text-sm"
-            {...form.getInputProps("phone", { type: "input" })}
-          />
+        <h1>Phone </h1>
+        <div className="grid grid-cols-6">
+          <div className="max-md:col-span-2">
+            <Select
+              w={"100%"}
+              data={getAll()}
+              searchable
+              icon={<PhoneCall size={15} />}
+              {...form.getInputProps("prefix", { type: "input" })}
+            />
+          </div>
+          <div className="col-span-4 md:col-span-5">
+            <TextInput
+              id=""
+              className="w-full focus:outline-none hover:outline-none  text-sm"
+              {...form.getInputProps("phone", { type: "input" })}
+            />
+          </div>
         </div>
 
         <button

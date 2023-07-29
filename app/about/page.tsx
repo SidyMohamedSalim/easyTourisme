@@ -1,69 +1,152 @@
-import React from "react";
+import { Select } from "@mantine/core";
+import { ChevronDownIcon } from "lucide-react";
+import countries from "world-countries";
 
-const page = () => {
+export default function page() {
+  console.log(countries[20].idd, countries[20].capital);
+
   return (
-    <div className="max-w-5xl mx-auto">
-      <h1 className="text-center text-4xl py-5">A propos</h1>
+    <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
+      <div
+        className="absolute inset-x-0 top-[-10rem] -z-10 transform-gpu overflow-hidden blur-3xl sm:top-[-20rem]"
+        aria-hidden="true"
+      >
+        <div
+          className="relative left-1/2 -z-10 aspect-[1155/678] w-[36.125rem] max-w-none -translate-x-1/2 rotate-[30deg] bg-gradient-to-tr opacity-30 sm:left-[calc(50%-40rem)] sm:w-[72.1875rem]"
+          style={{
+            clipPath:
+              "polygon(74.1% 44.1%, 100% 61.6%, 97.5% 26.9%, 85.5% 0.1%, 80.7% 2%, 72.5% 32.5%, 60.2% 62.4%, 52.4% 68.1%, 47.5% 58.3%, 45.2% 34.5%, 27.5% 76.7%, 0.1% 64.9%, 17.9% 100%, 27.6% 76.8%, 76.1% 97.7%, 74.1% 44.1%)",
+          }}
+        />
+      </div>
+      <div className="mx-auto max-w-2xl text-center">
+        <h2 className="text-3xl font-bold tracking-tight text-gray-900 sm:text-4xl">
+          Contactez Nous
+        </h2>
+        <p className="mt-2 text-lg leading-8 text-gray-600">
+          Aute magna irure deserunt veniam aliqua magna enim voluptate.
+        </p>
+      </div>
+      <form
+        action="#"
+        method="POST"
+        className="mx-auto mt-16 max-w-xl sm:mt-20"
+      >
+        <div className="grid grid-cols-1 gap-x-8 gap-y-6 sm:grid-cols-2">
+          <div>
+            <label
+              htmlFor="first-name"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Prénom
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="text"
+                name="first-name"
+                id="first-name"
+                autoComplete="given-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div>
+            <label
+              htmlFor="last-name"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Nom
+            </label>
 
-      <p className="bg-slate-50 p-5 rounded-lg">
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Repellat porro
-        enim eos beatae fugiat maiores ut non consectetur provident placeat
-        deleniti corrupti officiis dolore vitae, doloribus ab id architecto
-        quidem sequi tenetur temporibus facere iste. Sapiente eum, nam corrupti
-        amet consectetur quibusdam sint et facere nobis provident molestiae
-        ullam ex optio distinctio quas laudantium hic, minima eos modi vitae.
-        Rerum, labore non nisi quam veritatis ipsam inventore maxime voluptatum
-        blanditiis sint illo sunt consequuntur hic nesciunt eaque tempore
-        debitis veniam necessitatibus, corporis rem earum odio voluptatem nulla.
-        Veniam nobis voluptas, adipisci explicabo, sint magnam saepe molestiae
-        eos, distinctio voluptatum dolor nemo quas. Porro, pariatur! Assumenda
-        sequi molestiae incidunt soluta praesentium aut facilis velit est illo
-        aliquam dignissimos, consequatur a, fugiat animi eligendi. Sit illo,
-        iure eaque quaerat facilis eius consectetur eum doloremque assumenda
-        beatae labore nostrum saepe voluptatem magni porro explicabo, aspernatur
-        quo quae id molestias provident? Accusamus libero facilis nobis eligendi
-        autem aliquid corrupti et expedita quam ullam, recusandae maiores sequi
-        odit consequuntur officiis? Fugiat alias ipsam ullam magnam earum
-        explicabo eaque! Autem, laborum doloribus! Sunt numquam deleniti iste.
-        Voluptate quia illum molestias. Tenetur minima quaerat deleniti,
-        officiis iusto sed! Mollitia nesciunt beatae unde necessitatibus
-        perferendis placeat tempora reprehenderit ipsum vero rerum atque nihil,
-        pariatur enim? Provident eius similique, quae autem necessitatibus
-        laborum. Earum, fugiat doloribus quasi rem sequi iste ratione expedita
-        fugit similique placeat aliquam nostrum repudiandae ea nesciunt magnam!
-        Voluptatem ab vel neque omnis, iure dolore facere numquam eum ratione
-        voluptate. Maxime perspiciatis deserunt recusandae. Dolores doloremque
-        voluptatibus quod harum? Iure et eius dolor eum repudiandae, qui
-        placeat! Totam asperiores ex molestiae vero illo odit amet recusandae
-        quasi voluptate obcaecati ipsum, maiores, quo beatae nemo fuga non
-        deserunt iure porro voluptatum consequuntur sit, autem optio! Molestiae,
-        enim repellendus placeat ipsa impedit aperiam aliquid in voluptas
-        doloremque incidunt fugit, accusantium optio laboriosam recusandae unde!
-        Ipsum, ipsa! Sit id quis odio maiores placeat ipsum itaque, temporibus
-        suscipit rerum provident nesciunt minima! Animi et corporis aut
-        sapiente, numquam dolor rerum cumque distinctio velit dignissimos,
-        voluptate eum eius, cum voluptatem reiciendis esse exercitationem
-        inventore libero doloremque laboriosam minus pariatur at magni. Illum,
-        ipsam amet! A repudiandae nesciunt itaque doloremque, maiores quisquam
-        amet nobis eveniet ab iste ipsa beatae, dolore aliquam, commodi nostrum
-        aliquid labore voluptatibus sed eum ullam reiciendis? Necessitatibus
-        rerum qui libero explicabo nesciunt, veritatis atque ipsam quisquam
-        labore corporis expedita fugit, commodi nam voluptatibus quidem
-        obcaecati similique pariatur. Sapiente corporis, voluptatem nulla
-        repellendus porro et aliquid, maiores, officia tenetur voluptas nihil
-        quis tempore obcaecati delectus at temporibus nisi voluptates
-        accusantium ut provident omnis voluptatum. Eum incidunt molestiae
-        perspiciatis ab consequuntur aut? Quis, mollitia. Corporis numquam
-        ratione assumenda magni sit illum ut iusto similique totam, tenetur
-        provident suscipit repellendus odio possimus reiciendis dignissimos enim
-        sint debitis ullam odit pariatur dolores, qui iure. Eveniet deleniti
-        similique ad, repellendus facere non voluptates culpa magnam rerum
-        aspernatur, unde assumenda odit quasi harum, esse nemo. Modi molestias
-        obcaecati repellendus id amet? Rerum, voluptatem laboriosam dolores modi
-        voluptate aliquid ad quos consectetur, dolorem repellendus in.
-      </p>
+            <div className="mt-2.5">
+              <input
+                type="text"
+                name="last-name"
+                id="last-name"
+                autoComplete="family-name"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="email"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Email
+            </label>
+            <div className="mt-2.5">
+              <input
+                type="email"
+                name="email"
+                id="email"
+                autoComplete="email"
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="phone-number"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Phone number
+            </label>
+            <div className="relative mt-2.5">
+              <div className="absolute inset-y-0 left-0 flex items-center">
+                <label htmlFor="country" className="sr-only">
+                  Country
+                </label>
+                <select
+                  id="country"
+                  name="country"
+                  className="h-full rounded-md border-0 bg-transparent bg-none py-0 pl-4 pr-9 text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm"
+                >
+                  <option>US</option>
+                  <option>CA</option>
+                  <option>EU</option>
+                </select>
+                <ChevronDownIcon
+                  className="pointer-events-none absolute right-3 top-0 h-full w-5 text-gray-400"
+                  aria-hidden="true"
+                />
+              </div>
+              <input
+                type="tel"
+                name="phone-number"
+                id="phone-number"
+                autoComplete="tel"
+                className="block w-full rounded-md border-0 px-3.5 py-2 pl-20 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+              />
+            </div>
+          </div>
+          <div className="sm:col-span-2">
+            <label
+              htmlFor="message"
+              className="block text-sm font-semibold leading-6 text-gray-900"
+            >
+              Message
+            </label>
+            <div className="mt-2.5">
+              <textarea
+                name="message"
+                id="message"
+                rows={4}
+                className="block w-full rounded-md border-0 px-3.5 py-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-sky-600 sm:text-sm sm:leading-6"
+                defaultValue={""}
+              />
+            </div>
+          </div>
+        </div>
+        <div className="mt-10">
+          <button
+            type="submit"
+            className="block w-full rounded-md bg-sky-500 px-3.5 py-2.5 text-center text-sm font-semibold text-white shadow-sm hover:bg-sky-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-600"
+          >
+            Envoyer
+          </button>
+        </div>
+      </form>
     </div>
   );
-};
-
-export default page;
+}

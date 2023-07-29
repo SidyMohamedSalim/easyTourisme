@@ -7,7 +7,7 @@ export const Besttours = async () =>
     orderBy: {
       title: "desc",
     },
-    take: 6,
+    take: 3,
   });
 
 export const lastTours = async () =>
@@ -15,7 +15,7 @@ export const lastTours = async () =>
     orderBy: {
       createdAt: "desc",
     },
-    take: 6,
+    take: 3,
   });
 
 export const findTourbyId = async (id: string) =>

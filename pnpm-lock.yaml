@@ -35,15 +35,18 @@ specifiers:
   postcss: 8.4.24
   prisma: link:@/lib/prisma
   react: 18.2.0
+  react-accessible-accordion: ^5.0.0
   react-countup: ^6.4.2
   react-dom: 18.2.0
   react-hot-toast: ^2.4.1
   react-icons: ^4.10.1
+  swiper: ^10.0.4
   tailwind-merge: ^1.13.2
   tailwindcss: 3.3.2
   tailwindcss-animate: ^1.0.6
   ts-node: ^10.9.1
   typescript: 5.1.3
+  world-countries: ^4.0.0
   zod: ^3.21.4
 
 dependencies:
@@ -56,7 +59,7 @@ dependencies:
   '@mantine/form': 6.0.17_react@18.2.0
   '@mantine/hooks': 6.0.17_react@18.2.0
   '@mui/material': 5.14.2_t72as5nkc72wvuzlfm5pknb3h4
-  '@prisma/client': 4.16.1_prisma@@+lib+prisma
+  '@prisma/client': 4.16.1
   '@tabler/icons-react': 2.29.0_react@18.2.0
   '@tanstack/react-query': 4.32.0_biqbaboplfbrettd7655fr4n2y
   '@types/react': 18.2.14
@@ -77,13 +80,16 @@ dependencies:
   nodemailer: 6.9.4
   postcss: 8.4.24
   react: 18.2.0
+  react-accessible-accordion: 5.0.0_biqbaboplfbrettd7655fr4n2y
   react-countup: 6.4.2_react@18.2.0
   react-dom: 18.2.0_react@18.2.0
   react-hot-toast: 2.4.1_biqbaboplfbrettd7655fr4n2y
   react-icons: 4.10.1_react@18.2.0
+  swiper: 10.0.4
   tailwind-merge: 1.13.2
   tailwindcss: 3.3.2_ts-node@10.9.1
   tailwindcss-animate: 1.0.6_tailwindcss@3.3.2
+  world-countries: 4.0.0
   zod: 3.21.4
 
 devDependencies:
@@ -124,7 +130,7 @@ packages:
       '@prisma/client': '>=2.26.0 || >=3 || >=4'
     dependencies:
       '@auth/core': 0.8.1_nodemailer@6.9.4
-      '@prisma/client': 4.16.1_prisma@@+lib+prisma
+      '@prisma/client': 4.16.1
     transitivePeerDependencies:
       - nodemailer
     dev: false
@@ -844,7 +850,7 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
-  /@prisma/client/4.16.1_prisma@@+lib+prisma:
+  /@prisma/client/4.16.1:
     resolution: {integrity: sha512-CoDHu7Bt+NuDo40ijoeHP79EHtECsPBTy3yte5Yo3op8TqXt/kV0OT5OrsWewKvQGKFMHhYQ+ePed3zzjYdGAw==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -855,7 +861,6 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c
-      prisma: link:@/lib/prisma
     dev: false
 
   /@prisma/engines-version/4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c:
@@ -3303,6 +3308,16 @@ packages:
     resolution: {integrity: sha512-NuaNSa6flKT5JaSYQzJok04JzTL1CA6aGhv5rfLW3PgqA+M2ChpZQnAC8h8i4ZFkBS8X5RqkDBHA7r4hej3K9A==}
     dev: false
 
+  /react-accessible-accordion/5.0.0_biqbaboplfbrettd7655fr4n2y:
+    resolution: {integrity: sha512-MT2obYpTgLIIfPr9d7hEyvPB5rg8uJcHpgA83JSRlEUHvzH48+8HJPvzSs+nM+XprTugDgLfhozO5qyJpBvYRQ==}
+    peerDependencies:
+      react: ^16.3.2 || ^17.0.0 || ^18.0.0
+      react-dom: ^16.3.3 || ^17.0.0 || ^18.0.0
+    dependencies:
+      react: 18.2.0
+      react-dom: 18.2.0_react@18.2.0
+    dev: false
+
   /react-countup/6.4.2_react@18.2.0:
     resolution: {integrity: sha512-wdDrNb2lPFGbLb+i0FTgswPbWziubS6KZRII8NRpXmUCoZsi15PFbIHgBz60Dyxd4KPuRvwsK5aawIU4OPP3jA==}
     peerDependencies:
@@ -3731,6 +3746,11 @@ packages:
     engines: {node: '>= 0.4'}
     dev: false
 
+  /swiper/10.0.4:
+    resolution: {integrity: sha512-DlNR3KiaVkPep6RraZ2tNr7lvyuzELuR+4NZr4wO42t0UworIO3DxDlz8b5Q3uUioh7cJad99EdRJLkPF+r8Ag==}
+    engines: {node: '>= 4.7.0'}
+    dev: false
+
   /synckit/0.8.5:
     resolution: {integrity: sha512-L1dapNV6vu2s/4Sputv8xGsCdAVlb5nRDMFU/E27D44l5U6cw1g0dGd45uLc+OXjNMmF4ntiMdCimzcjFKQI8Q==}
     engines: {node: ^14.18.0 || >=16.0.0}
@@ -4070,6 +4090,10 @@ packages:
   /word-wrap/1.2.3:
     resolution: {integrity: sha512-Hz/mrNwitNRh/HUAtM/VT/5VH+ygD6DV7mYKZAtHOrbs8U7lvPS6xf7EJKMF0uW1KJCl0H701g3ZGus+muE5vQ==}
     engines: {node: '>=0.10.0'}
+    dev: false
+
+  /world-countries/4.0.0:
+    resolution: {integrity: sha512-LsFFYmggquj0U+i7VUaJOZYz5F4QNu+oceGw8odnyVHMT2LxYSdVncqdouOEnq1esr7yCakp9+3BZTztuSw1Pg==}
     dev: false
 
   /wrappy/1.0.2:
