@@ -12,8 +12,8 @@ import ButtonNew from "@/components/ui/button";
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [opened, setOpened] = useState(false);
-  const { data: session } = useSession();
-  const data = session?.session ?? session;
+  const { data: user } = useSession();
+  const data = user;
 
   return (
     <header>
@@ -83,7 +83,7 @@ const Header = () => {
             {data ? (
               <div className="">
                 <div className="py-2 my-1 text-center flex w-14 h-12 ">
-                  <ProfileMenu image={data.user?.image} />
+                  <ProfileMenu image={data.user?.image ?? ""} />
                 </div>
               </div>
             ) : (
@@ -116,7 +116,7 @@ const Header = () => {
           <div className="">
             {data ? (
               <div className="my-1 text-center flex justify-center items-center ">
-                <ProfileMenu image={data.user?.image} />
+                <ProfileMenu image={data.user?.image ?? ""} />
               </div>
             ) : (
               <>
