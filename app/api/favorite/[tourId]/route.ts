@@ -30,7 +30,7 @@ export async function POST(req: Request, { params }: paramsType) {
     const favorite = await prisma.favoritesTours.create({
       data: {
         TourId: tourId,
-        userEmail: session?.user?.email,
+        userEmail: session?.user?.email ?? "",
       },
     });
 

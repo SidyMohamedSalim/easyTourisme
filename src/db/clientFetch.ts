@@ -24,7 +24,7 @@ export const bookVsit = async ({
     method: "POST",
   });
 };
-export const getBookingByTourId = async (tourId: string): Booking => {
+export const getBookingByTourId = async (tourId: string) => {
   return await client(`/api/booking/${tourId}`, {
     method: "GET",
   });

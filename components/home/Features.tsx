@@ -25,7 +25,6 @@ const Features = async () => {
                 key={tour.id}
                 title={tour.title}
                 image={tour.image}
-                price={tour.price}
                 city={tour.city}
                 address={tour.address}
                 id={tour.id}

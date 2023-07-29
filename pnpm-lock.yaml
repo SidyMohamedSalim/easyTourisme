@@ -59,7 +59,7 @@ dependencies:
   '@mantine/form': 6.0.17_react@18.2.0
   '@mantine/hooks': 6.0.17_react@18.2.0
   '@mui/material': 5.14.2_t72as5nkc72wvuzlfm5pknb3h4
-  '@prisma/client': 4.16.1
+  '@prisma/client': 4.16.1_prisma@@+lib+prisma
   '@tabler/icons-react': 2.29.0_react@18.2.0
   '@tanstack/react-query': 4.32.0_biqbaboplfbrettd7655fr4n2y
   '@types/react': 18.2.14
@@ -130,7 +130,7 @@ packages:
       '@prisma/client': '>=2.26.0 || >=3 || >=4'
     dependencies:
       '@auth/core': 0.8.1_nodemailer@6.9.4
-      '@prisma/client': 4.16.1
+      '@prisma/client': 4.16.1_prisma@@+lib+prisma
     transitivePeerDependencies:
       - nodemailer
     dev: false
@@ -850,7 +850,7 @@ packages:
     resolution: {integrity: sha512-P1st0aksCrn9sGZhp8GMYwBnQsbvAWsZAX44oXNNvLHGqAOcoVxmjZiohstwQ7SqKnbR47akdNi+uleWD8+g6A==}
     dev: false
 
-  /@prisma/client/4.16.1:
+  /@prisma/client/4.16.1_prisma@@+lib+prisma:
     resolution: {integrity: sha512-CoDHu7Bt+NuDo40ijoeHP79EHtECsPBTy3yte5Yo3op8TqXt/kV0OT5OrsWewKvQGKFMHhYQ+ePed3zzjYdGAw==}
     engines: {node: '>=14.17'}
     requiresBuild: true
@@ -861,6 +861,7 @@ packages:
         optional: true
     dependencies:
       '@prisma/engines-version': 4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c
+      prisma: link:@/lib/prisma
     dev: false
 
   /@prisma/engines-version/4.16.0-66.b20ead4d3ab9e78ac112966e242ded703f4a052c:

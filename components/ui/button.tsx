@@ -9,7 +9,6 @@ import {
   LegacyRef,
 } from "react";
 import Link from "next/link";
-import clsx from "clsx";
 
 export const baseStyles = {
   solid:
@@ -53,14 +52,8 @@ const ButtonNew = forwardRef(function Button({
   href,
   ...props
 }: buttonProps) {
-  className = clsx(
-    baseStyles[variant],
-    variantStyles[variant][color],
-    className
-  );
-
   return href ? (
-    <Link href={href} className={className} {...props} />
+    <Link href={href} className={className}></Link>
   ) : (
     <button className={className} {...props} />
   );

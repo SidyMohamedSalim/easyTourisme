@@ -10,14 +10,19 @@ const CONTACT_MESSAGE_FIELDS: {
   message: "message",
 };
 
-export const generateEmailContent = (data) => {
+export const generateEmailContent = (data: {
+  phone: string;
+  email: string;
+  name: string;
+  message: string;
+}) => {
   const stringData = Object.entries(data).reduce(
     (str, [key, val]) =>
-      (str += `${CONTACT_MESSAGE_FIELDS[key]}: \n${val} \n \n`),
+      (str += `${CONTACT_MESSAGE_FIELDS.name}: \n${val} \n \n`),
     ""
   );
   const htmlData = Object.entries(data).reduce((str, [key, val]) => {
-    return (str += `<h3 class="form-heading" align="left">${CONTACT_MESSAGE_FIELDS[key]}</h3><p class="form-answer" align="left">${val}</p>`);
+    return (str += `<h3 class="form-heading" align="left">${CONTACT_MESSAGE_FIELDS.name}</h3><p class="form-answer" align="left">${val}</p>`);
   }, "");
 
   return {

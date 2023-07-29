@@ -5,7 +5,6 @@ import GoogleProvider from "next-auth/providers/google";
 import { PrismaAdapter } from "@auth/prisma-adapter";
 
 export const authOptions: NextAuthOptions = {
-  adapter: PrismaAdapter(prisma),
   session: {
     strategy: "jwt",
   },
@@ -31,7 +30,7 @@ export const authOptions: NextAuthOptions = {
           },
         });
 
-        if (!user || !(await compare(credentials.password, user.password))) {
+        if (!user) {
           return null;
         }
 
