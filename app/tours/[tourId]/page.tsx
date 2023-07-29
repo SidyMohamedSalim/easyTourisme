@@ -1,4 +1,3 @@
-import { LocateFixed, MapPin, Star, User, Users2, Wallet } from "lucide-react";
 import Image from "next/image";
 import React from "react";
 import { findTourbyId } from "../../../src/db/tours";
@@ -8,8 +7,6 @@ import { prisma } from "../../../src/db/prisma";
 import { Reviews } from "./Review";
 import { getServerSession } from "next-auth";
 import { authOptions } from "../../../lib/auth";
-import Heart from "@/components/tours/Heart";
-import { Review } from "@prisma/client";
 
 const page = async ({ params }: { params: { tourId: string } }) => {
   const tour = await findTourbyId(params.tourId);
