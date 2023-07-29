@@ -2,7 +2,6 @@ import Footer from "@/components/footer/Footer";
 import { getServerSession } from "next-auth";
 import { SessionProvider } from "next-auth/react";
 import { PropsWithChildren } from "react";
-import { ToastContainer } from "react-toastify";
 import "./globals.css";
 import Header from "./header";
 import Providers from "./providers";
