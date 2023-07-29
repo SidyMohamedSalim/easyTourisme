@@ -6,15 +6,15 @@ import { authOptions } from "../../lib/auth";
 import { prisma } from "../../src/db/prisma";
 
 const page = async () => {
-  const session = await getServerSession(authOptions);
-  const favs = await prisma.favoritesTours.findMany({
-    where: {
-      userEmail: session?.user?.email ?? "",
-    },
-    select: {
-      tour: true,
-    },
-  });
+  // const session = await getServerSession(authOptions);
+  // const favs = await prisma.favoritesTours.findMany({
+  //   where: {
+  //     userEmail: session?.user?.email ?? "",
+  //   },
+  //   select: {
+  //     tour: true,
+  //   },
+  // });
 
   <div>
     <FormSearch />
@@ -30,7 +30,7 @@ const page = async () => {
           </div>
           {/* content */}
           <div className="grid  max-md:grid-cols-2 grid-cols-3  gap-4">
-            {favs.map((fav) => (
+            {/* {favs.map((fav) => (
               <BlocB
                 key={fav.tour.id}
                 image={fav.tour.image}
@@ -39,7 +39,7 @@ const page = async () => {
                 title={fav.tour.title}
                 address={fav.tour.address}
               />
-            ))}
+            ))} */}
           </div>
         </div>
       </div>
