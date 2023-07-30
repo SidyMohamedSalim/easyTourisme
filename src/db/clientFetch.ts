@@ -1,10 +1,6 @@
 import { client } from "../server/client";
 import { BookVisitScheme } from "../Scheme/ZodSheme";
 import { bookVsitType } from "../Scheme/Types/zodType";
-import { Booking } from "@prisma/client";
-import { signIn } from "next-auth/react";
-import { string } from "zod";
-
 export const getAllBooking = async (tourId: string) => {
   return await client(`/api/booking`, {
     method: "GET",

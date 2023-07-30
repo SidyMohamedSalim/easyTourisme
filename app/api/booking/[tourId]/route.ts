@@ -26,15 +26,15 @@ export async function POST(req: Request, { params }: paramsType) {
 
     const link = `http://localhost:3000/tours/${tourId}`;
 
-    // await transporter.sendMail({
-    //   ...mailOptions(body.email),
-    //   ...generateEmailContent({
-    //     message: `<p>Vous avez recu une demande de contact concernant  la destination avec le titre :</p>
-    //     <a href='${link}' >${tour?.title}</a>`,
-    //     ...body,
-    //   }),
-    //   subject: `Senegal Premium Tour`,
-    // });
+    await transporter.sendMail({
+      ...mailOptions(body.email),
+      ...generateEmailContent({
+        message: `<p>Vous avez recu une demande de contact concernant  la destination avec le titre :</p>
+        <a href='${link}' >${tour?.title}</a>`,
+        ...body,
+      }),
+      subject: `Senegal Premium Tour`,
+    });
 
     await prisma.booking.create({
       data: {

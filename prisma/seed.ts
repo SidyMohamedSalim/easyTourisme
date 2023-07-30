@@ -87,3 +87,6 @@ main()
     await prisma.$disconnect();
     process.exit(1);
   });
+
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
