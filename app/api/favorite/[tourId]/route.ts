@@ -55,7 +55,6 @@ export async function GET(req: Request, { params }: paramsType) {
         },
       },
     });
-    console.log(favorite);
 
     return new Response(JSON.stringify(favorite));
   } else {

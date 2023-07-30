@@ -35,7 +35,6 @@ export async function POST(req: Request, { params }: paramsType) {
           email: sesssion.user.email,
         },
       });
-      console.log(user);
 
       if (!user) {
         return new Response(

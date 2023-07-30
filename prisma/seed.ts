@@ -75,7 +75,6 @@ async function main() {
   //     // password: "salim2019",
   //   },
   // });
-  // console.log({ user });
 }
 
 main()

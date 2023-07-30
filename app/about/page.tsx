@@ -3,8 +3,6 @@ import { ChevronDownIcon } from "lucide-react";
 import countries from "world-countries";
 
 export default function page() {
-  console.log(countries[20].idd, countries[20].capital);
-
   return (
     <div className="isolate bg-white px-6 py-24 sm:py-32 lg:px-8">
       <div

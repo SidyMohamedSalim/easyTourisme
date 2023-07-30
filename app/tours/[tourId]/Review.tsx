@@ -101,8 +101,6 @@ export const Reviews = ({ tourId, Reviews, userSessionEmail }: ReviewProps) => {
 };
 
 export const OneReview = ({ review }: { review: ReviewWithUser }) => {
-  console.log(review.rating);
-
   return (
     <figure className="p-4 bg-slate-50 w-full my-4 rounded-sm ">
       <figcaption className="flex items-center mt-2 space-x-3">

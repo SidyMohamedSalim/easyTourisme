@@ -1,7 +1,5 @@
 import countries from "world-countries";
 
-console.log(countries);
-
 const formattedCountries = countries.map((country) => ({
   name: country.name.common,
   value: country.idd.root + country.idd.suffixes,

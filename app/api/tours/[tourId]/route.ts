@@ -23,7 +23,6 @@ export async function GET(req: Request, { params }: paramsType) {
 export async function POST(req: Request, { params }: paramsType) {
   const body = tourScheme.parse(req.body);
 
-  console.log(req.body);
   try {
     const tour = await prisma.tour.create({
       data: {

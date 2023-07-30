@@ -5,6 +5,7 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "../../../../lib/auth";
 import { BookVisitScheme } from "@/src/Scheme/ZodSheme";
 import { generateEmailContent } from "@/lib/GetContactMessage";
+import { transporter, mailOptions } from "../../../../src/db/nodemailer";
 const queryScheme = z.object({
   tourId: z.string(),
 });

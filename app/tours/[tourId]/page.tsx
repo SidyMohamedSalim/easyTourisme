@@ -34,7 +34,6 @@ const page = async ({ params }: { params: { tourId: string } }) => {
       createdAt: "desc",
     },
   });
-  console.log(reviews);
 
   return (
     <div className="relative">

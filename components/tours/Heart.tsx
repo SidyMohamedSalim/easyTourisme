@@ -18,10 +18,10 @@ const Heart = ({ isFav, tourId }: { isFav: boolean; tourId: string }) => {
   const [heartColor, setHeartColor] = useState("white");
   const queryClient = new QueryClient();
 
-  // const { data, isLoading } = useQuery({
-  //   queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
-  //   queryFn: () => getFavByTourID(tourId),
-  // });
+  const { data, isLoading } = useQuery({
+    queryKey: queryKeys.byId(queryKeys.favoritesName, tourId),
+    queryFn: () => getFavByTourID(tourId),
+  });
 
   useEffect(() => {
     setHeartColor(isFav ? "#fa3e5f" : "white");
